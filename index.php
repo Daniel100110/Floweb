@@ -9,7 +9,7 @@
     <link rel="icon" href="logo.png">
     <style media="screen">
         p {
-            color: white;
+            color: black;
         }
     </style>
 
