@@ -330,6 +330,6 @@ if (isset($_SESSION['login_user'])) {
 <?php
 // session_start();
 if (!$_SESSION['login_user']) {
-  header("location:../index.php");
+  header("location:index.php");
 }
 ?>
