@@ -1,12 +1,15 @@
-﻿<!DOCTYPE html>
+﻿<?php
+  session_start();
+  if (isset($_SESSION['login_user'])) {
+  ?>
+
+<!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-  <title>CRUD USUARIOS</title>
-  <link rel="icon" href="logo.png">
+	<head>
+  <?php
+    include '../head/head.php';
+  ?>
   <style media="screen">
     @keyframes giro {
       50% {
@@ -63,40 +66,22 @@
       font-size: 12px;
     }
   </style>
-</head>
+	</head>
+
+	<body>
+		<header> <br> <br>
+			<center>
+				<h1>系统徽标(Sys802)</h1>
+			</center>
+			<br> <br>
+		</header>
+
+
+		<?php
+		include '../navs/nav_index.php';
+		?>
 
 <body style="background-color:#f6f5f5">
-
-  <header>
-    <div id="navbarHeader" style="background-color:#048998;       
-      background-image: url('../IMAGENES/fondo1.jpg');
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-size: cover;">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <br>
-            <h4 class="text-white"><a href="../index.php"><span style="color:white;">Floweb<br><h6>Alfa</h6></span></a></h4>
-            <p class="text-muted">
-              <br>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="navbar" style="background-color:#7fe7cc;">
-      <div class="container d-flex justify-content-between">
-        <a href="#" class="navbar-brand d-flex align-items-center">
-          <strong style="color:white;">Usuarios</strong>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon">
-            <h3><i class="fas fa-bars" style="color:white;"></i></h3>
-          </span>
-        </button>
-      </div>
-    </div>
-  </header>
   <div class="container-fluid" style="margin-top: 5%;">
     <div class="row">
       <div class="col-sm-12">
@@ -360,3 +345,11 @@
 </body>
 
 </html>
+<?php } ?>
+
+<?php
+// session_start();
+if (!$_SESSION['login_user']) {
+	header("location:index.php");
+}
+?>
