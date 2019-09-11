@@ -79,3 +79,8 @@ create database Floweb2;
     foreign key (no_iva) references iva(no_iva),
     foreign key (no_carrito) references carrito(no_carrito)
   );
+
+  create table logs(
+    username varchar(255) primary key,
+    password varchar(255)
+  );
