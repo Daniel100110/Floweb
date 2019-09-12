@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="#">Sys802</a>
+			<a class="navbar-brand" href="#">Inicio</a>
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 			 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -28,7 +28,7 @@
 								<span class="input-group-text" id="basic-addon1">@gmail.com</span>
 							</div>
 							<div class="input-group-prepend">
-								<span class="input-group-text" id="basic-addon1"><a href="logout.php"><b>出去</b> </a></span>
+								<span class="input-group-text" id="basic-addon1"><a href="../logout.php"><b>出去</b> </a></span>
 							</div>
 						</div>
 					</form>

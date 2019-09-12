@@ -36,6 +36,15 @@ if (isset($_SESSION['login_user'])) {
             <span class="focus-input100"></span>
           </div>
 
+          <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
+          <label class="input100" style="text-align:right;">Tipo de acceso:</label>
+          </div>
+
+          <select class="wrap-input100 rs2-wrap-input100 validate-input m-b-20">
+            <option value="A">Administrador</option>
+            <option value="B">Empleado</option>
+          </select>
+
           <div class="container-login100-form-btn">
             <input name="submit" type="submit" value="Iniciar" class="login100-form-btn">
           </div>

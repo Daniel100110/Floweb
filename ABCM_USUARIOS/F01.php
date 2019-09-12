@@ -2,8 +2,6 @@
 session_start();
 if (isset($_SESSION['login_user'])) {
   ?>
-  <link rel="stylesheet" type="text/css" href="../CSS/css_f01.css">
-</head>
 
   <!DOCTYPE html>
   <html lang="en">
@@ -11,51 +9,15 @@ if (isset($_SESSION['login_user'])) {
   <head>
     <?php
       include '../HEADERS/head.php';
-      ?>
-    <style media="screen">
-      nav,footer {
-        background-image: url('../IMAGENES/fondo1.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-      }
-
-      #border3 {
-        width: 330px;
-        height: 330px;
-        border: 10px outset black;
-        border-radius: 100%;
-      }
-
-      #border2 {
-        width: 310px;
-        height: 310px;
-        border: 10px double #3bb4c1;
-        border-radius: 100%;
-      }
-
-      #border1 {
-        width: 290px;
-        height: 290px;
-        border: 10px dashed red;
-        border-radius: 100%;
-      }
-
-      p {
-        color: white;
-      }
-
-      table {
-        font-size: 12px;
-      }
-    </style>
+    ?>
+  <link rel="stylesheet" type="text/css" href="../CSS/css_f01.css">
   </head>
 
   <body>
     <header> <br> <br>
       <center>
         <h1 style="color:green">FloWeb</h1>
-        <h6 style="color:red">Versión Alfa 1.01</h6>
+        <h6 style="color:red">Versión Alfa 1.07</h6>
       </center>
       <br> <br>
     </header>
