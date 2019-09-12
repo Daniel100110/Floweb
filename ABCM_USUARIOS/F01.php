@@ -12,7 +12,7 @@
   <header> <br> <br>
     <center>
       <h1 style="color:green">FloWeb</h1>
-      <h6 style="color:red">Versión Alfa 1.01</h6>
+      <h6 style="color:red">Versión Alfa 1.05 </h6>
     </center>
     <br> <br>
   </header>
