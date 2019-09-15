@@ -7,9 +7,9 @@ if (isset($_SESSION['login_user'])) {
   <html lang="en">
 
   <head>
-    <?php
-      include '../HEADERS/head.php';
-    ?>
+  <?php
+    include '../HEADERS/head.php';
+  ?>
   <link rel="stylesheet" type="text/css" href="../CSS/css_f01.css">
   </head>
 

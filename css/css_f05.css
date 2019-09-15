@@ -1,0 +1,6 @@
+p {
+    color: white;
+}
+table,th,tr,td{
+    border: black 1px solid;
+}

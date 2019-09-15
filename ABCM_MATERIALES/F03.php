@@ -5,61 +5,8 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-  <title>CRUD MATERIALES</title>
-  <link rel="icon" href="logo.png">
-  <style media="screen">
-    @keyframes giro {
-      50% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    footer {
-      background-image: url('./IMAGENES/fondo1.jpg');
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-size: cover;
-    }
-
-    #border3 {
-      width: 330px;
-      height: 330px;
-      border: 10px outset green;
-      border-radius: 100%;
-      animation-name: giro;
-      animation-duration: 25s;
-      animation-iteration-count: infinite;
-    }
-
-    #border2 {
-      width: 310px;
-      height: 310px;
-      border: 10px double red;
-      border-radius: 100%;
-      animation-name: giro;
-      animation-duration: 20s;
-      animation-iteration-count: infinite;
-    }
-
-    #border1 {
-      width: 290px;
-      height: 290px;
-      border: 10px dashed #048998;
-      border-radius: 100%;
-      animation-name: giro;
-      animation-duration: 15s;
-      animation-iteration-count: infinite;
-    }
-
-    p {
-      color: white;
-    }
-  </style>
-
+  <title>[F03]CRUD MATERIALES</title>
+  <link rel="stylesheet" href="../CSS/css_f03.css">
 </head>
 
 <body style="background-color:#f6f5f5">

@@ -6,16 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <title>Inicio</title>
-    <link rel="icon" href="logo.png">
-    <style media="screen">
-        p {
-            color: white;
-        }
-        table,th,tr,td{
-            border: black 1px solid;
-        }
-    </style>
-
+    <link rel="stylesheet" href="../CSS/css_f05.css">
 </head>
 
 <body style="background-color:#f6f5f5">
