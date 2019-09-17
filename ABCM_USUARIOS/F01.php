@@ -7,22 +7,19 @@ if (isset($_SESSION['login_user'])) {
   <html lang="en">
 
   <head>
-  <?php
-    include '../HEADERS/head.php';
-  ?>
-  <link rel="stylesheet" type="text/css" href="../CSS/css_f01.css">
+    <?php
+      include '../head/head.php';
+      ?>
+    <link rel="stylesheet" type="text/css" href="../CSS/css_f01.css">
   </head>
 
   <body>
-    <header> <br> <br>
-      <center>
-        <h1 style="color:green">FloWeb</h1>
-        <h6 style="color:red">Versión Alfa 1.07</h6>
-      </center>
-      <br> <br>
+    <?php
+      include '../head/header.php';
+      ?>
     </header>
     <?php
-      include '../NAVS/nav_empresa.php';
+      include '../nav/nav_empresa.php';
       ?>
 
     <body style="background-color:#f6f5f5">
@@ -297,5 +294,6 @@ if (!$_SESSION['login_user']) {
   header("location:../index.php");
 }
 ?>
-  </body>
+</body>
+
 </html>

@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
   $_SESSION['login_user'] = $username;
   $query = mysqli_query($connect, "SELECT username FROM logs WHERE username='$username' and password='$password'");
   if (mysqli_num_rows($query) != 0) {
-    echo "<script language='javascript' type='text/javascript'> location.href='./ABCM_USUARIOS/F01.php' </script>";
+    echo "<script language='javascript' type='text/javascript'> location.href='./abcm_materiales/F03.php' </script>";
   } else {
     echo "<script type='text/javascript'>alert('User Name Or Password Invalid!')</script>";
   }

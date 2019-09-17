@@ -9,19 +9,19 @@
   <link rel="stylesheet" href="../CSS/css_f03.css">
 </head>
 
-<body style="background-color:#f6f5f5">
-
-<header> <br> <br>
-    <center>
-      <h1 style="color:green">FloWeb</h1>
-      <h6 style="color:red">Versión Alfa 1.05 </h6>
-    </center>
-    <br> <br>
-  </header>
+<head>
   <?php
-  include '../NAVS/nav_empresa.php';
+    include '../head/head.php';
   ?>
-  
+  <link rel="stylesheet" type="text/css" href="../CSS/css_f01.css">
+  </head>
+
+  <body>
+  <?php
+      include '../head/header.php';
+      include '../nav/nav_empresa.php';
+      include 'metodos_f03.php';
+  ?>
   <div class="container-fluid" style="margin-top: 5%;">
     <div class="row">
       <div class="col-sm-4">
@@ -43,20 +43,7 @@
           </thead>
           <tbody>
             <?php
-            include '../CONEXION/conexion.php';
-            $sql = "select * from material";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-                echo "<tr>
-                <th scope='row'>" . $row['no_material'] . "</th>" .
-                  "<td>" . $row['nom_material'] . "</td>" .
-                  "<td>" . $row['cant_material'] . "</td>" .
-                  "<td>" . $row['status_material'] . "</td>
-                </tr>";
-              }
-            } else { }
-            $conn->close();
+              consultar_material();
             ?>
           </tbody>
         </table>
@@ -73,21 +60,21 @@
             </div>
           </div>
         </center>
-        <form method="post">
+        <form method="post" id="form1">
           <div class="form-group">
-            <label>Núm. de Material:</label><input class="form-control" type="text" id="no_material" name="no_material">
-            <label>Nombre:</label><input class="form-control" type="text" id="nom_material" name="nom_material">
-            <label>Cantidad:</label><input class="form-control" type="text" id="cant_material" name="cant_material">
+            <label>Núm. de Material:</label><input class="form-control" type="text" id="no_material_i" name="no_material_i">
+            <label>Nombre:</label><input class="form-control" type="text" id="nom_material_i" name="nom_material_i">
+            <label>Cantidad:</label><input class="form-control" type="text" id="cant_material_i" name="cant_material_i">
           </div>
           <div class="form-group">
             <label>Status:</label>
-            <select id="status_material" name="status_material" class="form-control">
+            <select id="status_material_i" name="status_material_i" class="form-control">
               <option Selected value="Activo">Activo</option>
               <option value="Inactivo">Inactivo</option>
             </select>
           </div>
-          <input type="submit" class="btn btn-info" onclick="this.form.action = '_modificarMaterial.php'" value="Modificar">
-          <input type="submit" class="btn btn-primary" style="float:right;" onclick="this.form.action = '_insertarMaterial.php'" value="Agregar">
+          <!-- <input type="submit" class="btn btn-info" onclick = "modificar_material();" value="Modificar"> -->
+          <input type="submit" class="btn btn-primary" onclick = "insertar_material();" style="float:right;" value="Agregar">
         </form>
         </form>
         <br> <br>
@@ -106,12 +93,25 @@
           <div class="form-group">
             <label>Núm. de Material:</label><input class="form-control" type="text" id="no_material" name="no_material">
             <br>
-            <input type="submit" class="btn btn-danger" onclick="this.form.action = '_borrarMaterial.php'" style="float:right;" value="Eliminar">
+            <input type="submit" class="btn btn-danger" onclick = "borrar_material();" style="float:right;" value="Eliminar">
         </form>
       </div>
     </div>
   </div>
-
+  <script>
+  function consultar_material(){
+    alert('<?php consultar_material(); ?>');s
+  }
+  function insertar_material(){
+    alert('<?php insertar_material(); ?>');s
+  }
+  function modificar(){
+    alert('<?php modificar_material(); ?>');s
+  }
+  function borrar_material(){
+    alert('<?php borrar_material(); ?>');s
+  }
+  </script>
   <?php
   include '../FOOTER/footer.php';
   ?>
