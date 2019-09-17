@@ -25,9 +25,6 @@
 						<div class="input-group">
                             <input type="text" class="form-control" placeholder="<?php echo $_SESSION['login_user']; ?>" aria-label="Username" aria-describedby="basic-addon1" readonly>
 							<div class="input-group-prepend">
-								<span class="input-group-text" id="basic-addon1">@gmail.com</span>
-							</div>
-							<div class="input-group-prepend">
 								<span class="input-group-text" id="basic-addon1"><a href="../logout.php"><b>出去</b> </a></span>
 							</div>
 						</div>
