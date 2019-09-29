@@ -13,6 +13,7 @@
                 <p>Ibarra Contreras Daniel Alejandro</p>
                 <p>Manuel Martinez Maya</p>
                 <p>Talamantes Jim Erik</p>
+                <p>José Ortiz Luna</p>
           </div>
           <hr class="clearfix w-100 d-md-none pb-3">
           <div class="col-md-6 mb-md-0 mb-3">

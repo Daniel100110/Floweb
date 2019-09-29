@@ -142,7 +142,7 @@
   }
   </script>
   <?php
-    include '../FOOTER/footer.php';
+    include '../footer/footer.php';
   ?>
 </body>
 </html>

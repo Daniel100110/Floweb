@@ -10,13 +10,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="#">投资组合<span class="sr-only"></span></a> <!-- Portafolio -->
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">接触</a> <!-- Contacto -->
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#" tabindex="-1">自传</a> <!-- Bibliografia -->
+						<a class="nav-link" href="#">-<span class="sr-only"></span></a>
 					</li>
 				</ul>
 
@@ -25,7 +19,7 @@
 						<div class="input-group">
                             <input type="text" class="form-control" placeholder="<?php echo $_SESSION['login_user']; ?>" aria-label="Username" aria-describedby="basic-addon1" readonly>
 							<div class="input-group-prepend">
-								<span class="input-group-text" id="basic-addon1"><a href="../logout.php"><b>出去</b> </a></span>
+								<span class="input-group-text" id="basic-addon1"><a href="../logout.php"><b><i class="fas fa-sign-out-alt"></i></b> </a></span>
 							</div>
 						</div>
 					</form>
