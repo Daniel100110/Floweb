@@ -1,5 +1,5 @@
 <?php
-  function test_crear_carrito(){
+  function crear_carrito(){
         try {
         include '../CONEXION/conexion.php';
         $no_carrito = 4.6;
@@ -20,7 +20,7 @@
         $conn->close();
   }
 
-  function test_insertar_carrito(){
+  function insertar_carrito(){
     try {
       include '../CONEXION/conexion.php'; //Se incluye la conexión a la base de datos.
       $no_carrito_producto = 2;

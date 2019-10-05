@@ -1,12 +1,9 @@
 
   <?php
-
     function insertarUsuario(){
         include '../CONEXION/conexion.php';
         $a = $_POST['no_cuenta'];
-        $b = $_POST['nom_usuario'];
-        $c = $_POST['apll_paterno'];
-        $d = $_POST['apll_materno'];
+        $b = $_POST['nomCompleto_usuario'];
         $e = $_POST['tel_usuario'];
         $f = $_POST['dir_usuario'];
         $g = $_POST['correo_cuenta'];

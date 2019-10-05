@@ -1,6 +1,6 @@
 <?php
     function borrar_producto(){
-    include '../conexion/conexion.php';
+      include '../conexion/conexion.php';
       $a = $_POST['no_producto'];
       $sql = "delete from producto where no_producto= '$a'";
       if ($conn->query($sql) === TRUE) {
@@ -12,7 +12,7 @@
     }
 
     function insertar_fabricacion(){
-    include '../conexion/conexion.php';
+      include '../conexion/conexion.php';
       $a = $_POST['no_lista'];
       $b = $_POST['no_material'];
       $c = $_POST['cant_material'];
@@ -27,7 +27,7 @@
     }
 
     function insertar_producto(){
-    include '../conexion/conexion.php';
+      include '../conexion/conexion.php';
         $a = $_POST['no_producto'];
         $b = $_FILES['myfile']['name'];
         $c = $_POST['nom_producto'];
@@ -70,7 +70,7 @@
     }
 
     function modificar_fabricacion(){
-    include '../CONEXION/conexion.php';
+      include '../CONEXION/conexion.php';
       $a = $_POST['no_lista'];
       $b = $_POST['no_material'];
       $c = $_POST['cant_material'];
@@ -111,7 +111,7 @@
     }
 
     function modificar_producto(){
-    include '../CONEXION/conexion.php';
+      include '../CONEXION/conexion.php';
       $a = $_POST['no_producto'];
       $b = $_POST['nom_producto'];
       $c = $_POST['status_producto'];

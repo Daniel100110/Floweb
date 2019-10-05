@@ -1,6 +1,6 @@
 <?php
     function consultar_material(){
-    include '../conexion/conexion.php';
+        include '../conexion/conexion.php';
         $sql = "select * from material";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
@@ -17,7 +17,7 @@
     }
 
     function insertar_material(){
-    include '../conexion/conexion.php';
+        include '../conexion/conexion.php';
         $no_material_i = $_POST['no_material_i'];
         $nom_material_i = $_POST['nom_material_i'];
         $cant_material_i = $_POST['cant_material_i'];
@@ -34,7 +34,7 @@
     }
 
     function modificar_material(){
-    include '../conexion/conexion.php';
+        include '../conexion/conexion.php';
         $no_material_m = $_POST['no_material_m'];
         $nom_material_m = $_POST['nom_material_m'];
         $cant_material_m = $_POST['cant_material_m'];
@@ -75,7 +75,7 @@
     }
     
     function borrar_material(){
-    include '../conexion/conexion.php';
+        include '../conexion/conexion.php';
             $no_material = $_POST['no_material'];
             $sql = "delete from material where no_material = '$no_material' ";
             if ($conn->query($sql) === TRUE) {
