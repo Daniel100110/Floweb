@@ -76,7 +76,7 @@
               <div id="border2">
                 <div id="border1">
                   <div id="border0">
-                    <img src="../IMAGENES/Flor.png" style="width:95%;height:260px;border-radius: 100%;">
+                    <img src="../imagenes/Flor.png" style="width:95%;height:260px;border-radius: 100%;">
                   </div>
                 </div>
               </div>
@@ -96,7 +96,7 @@
           </table>
           <form method="post">
             <div class="form-group">
-              <label>Núm. de Material:</label><input class="form-control" type="text" id="no_material" name="no_material">
+              <label>Núm. de Material:</label><input class="form-control" type="text" id="no_material_b" name="no_material_b">
               <br>
               <input type="submit" class="btn btn-danger" onclick = "borrar_material();" style="float:right;" value="Eliminar">
           </form>

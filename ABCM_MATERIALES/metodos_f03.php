@@ -76,13 +76,13 @@
     
     function borrar_material(){
         include '../conexion/conexion.php';
-            $no_material = $_POST['no_material'];
-            $sql = "delete from material where no_material = '$no_material' ";
-            if ($conn->query($sql) === TRUE) {
-            echo "<div class='alert alert-success' role='alert'>¡Registro borrado exitosamente!</div>";
-            } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-            }
+        $no_material_b = $_POST['no_material_b'];
+        $sql = "delete from material where no_material = '$no_material_b' ";
+        if ($conn->query($sql) === TRUE) {
+        echo "<div class='alert alert-success' role='alert'>¡Registro borrado exitosamente!</div>";
+        } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        }
         $conn->close();
     }
 ?>

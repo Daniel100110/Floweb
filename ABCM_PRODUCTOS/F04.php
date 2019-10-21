@@ -139,7 +139,7 @@
             <tbody>
 
               <?php
-              include '../CONEXION/conexion.php';
+              include '../conexion/conexion.php';
               $sql = "select * from fabricacion";
               $result = $conn->query($sql);
               if ($result->num_rows > 0) {
@@ -164,7 +164,7 @@
                   <div id="border2">
                     <div id="border1">
                       <div id="border0">
-                        <img src="../IMAGENES/rosas.jpg" style="width:100%;border-radius: 100%;">
+                        <img src="../imagenes/rosas.jpg" style="width:100%;border-radius: 100%;">
                       </div>
                     </div>
                   </div>

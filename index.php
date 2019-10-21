@@ -1,92 +1,103 @@
-<?php
-if (isset($_SESSION['login_user'])) {
-  header("location:home.php");
-}
-?>
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-  <title>Login V17</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="css/util.css">
-  <link rel="stylesheet" type="text/css" href="css/main.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
+    <head>
+        <?php
+            include './head/head.php';
+        ?>
+        <title>[F05]CRUD MATERIALES</title>
+        <link rel="stylesheet" href="./css/css_f05.css">
+    </head>
 
-<body>
-
-  <div class="limiter">
-    <div class="container-login100">
-      <div class="wrap-login100">
-        <form method="post" class="login100-form validate-form">
-          <span class="login100-form-title p-b-34">
-            Inicio de sesión
-          </span>
-
-          <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
-            <input id="username" class="input100" type="text" name="username" placeholder="User name">
-            <span class="focus-input100"></span>
-          </div>
-          <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
-            <input id="password" class="input100" type="password" name="password" placeholder="Password">
-            <span class="focus-input100"></span>
-          </div>
-
-          <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
-          <label class="input100" style="text-align:right;">Tipo de acceso:</label>
-          </div>
-
-          <select class="wrap-input100 rs2-wrap-input100 validate-input m-b-20">
-            <option value="A">Administrador</option>
-            <option value="B">Empleado</option>
-          </select>
-
-          <div class="container-login100-form-btn">
-            <input name="submit" type="submit" value="Iniciar" class="login100-form-btn">
-          </div>
-
-          <div class="w-full text-center p-t-27 p-b-239">
-            <span class="txt1">
-              Recuperar contraseña
-            </span>
-
-            <a href="#" class="txt2">
-              correo / contraseña
-            </a>
-          </div>
-
-          <div class="w-full text-center">
-            <a href="#" class="txt3">
-              Registrarse
-            </a>
-          </div>
-        </form>
-
-        <div class="login100-more" style="background-image: url('./IMAGENES/[pp]fondo.jpg');"></div>
-      </div>
-    </div>
-  </div>
-
-</body>
-
+    <body>
+        <?php
+            include './head/header.php';
+            include './nav/nav_empresa.php';
+            include './proceso_de_venta/metodos_f05.php';
+            ?>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class='row'>
+                        <?php
+                            include './conexion/conexion.php';
+                            $sql = "select * from producto";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo
+                                    "<div class='col-sm-3' style='border: 1px solid black; width:150px;
+                                    height:300px; margin: 10px;'>" .
+                                    "<form method='post' action='_insertarCarrito.php'>" .
+                                    "<input type='hidden' id='no_producto' name='no_producto' style='width:0px;height:0px;' value='" . $row['no_producto'] . "'></input></center><br/>" .
+                                    "<center>" . $row['nom_producto'] . "</center>" .
+                                            "<center><img src ='../ABCM_PRODUCTOS/upload/" . $row['foto_producto'] . "' class='img-thumbnail' width='130px' />" .
+                                            "<br/><br/>$" . $row['precio_producto'] . "<br/><br/>" .
+                                            "<input type='number' id='cantidad' name='cantidad' placeholder='Cantidad' style='width:70%;float:left;height:35px;'></input>" .
+                                            // "<input class='btn btn-primary' type='submit' value='' style='float:left;height:35px;'></input>".
+                                            "<button class='btn btn-primary' type='submit' style='float:left;height:35px;'><i class='fas fa-angle-double-right'></i></button>" .
+                                            "</form>" .
+                                            "</div>";
+                                }
+                            } else { }
+                            $conn->close();
+                            ?>
+                    </div>
+                </div>
+                <div class="col-sm-3" style="background-color:gray;">
+                    <br>
+                    <img class='img-thumbnail' src="./imagenes/bolsa.jpg">
+                    <br /> <br />
+                    <table width='100%' style="background-color:white;text-align:center;">
+                        <thead>
+                            <tr>
+                                <th colspan="4" style="text-align:center;">Lista de compras</th>
+                            </tr>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <?php
+                                include './conexion/conexion.php';
+                                $sql = "select * from pedido";
+                                $result = $conn->query($sql);
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo
+                                            "<tr>" .
+                                                "<td>" .
+                                                $row['no_producto'] .
+                                                "</td>" .
+                                                "<td>" .
+                                                $row['nom_producto'] .
+                                                "</td>" .
+                                                "<td>$" .
+                                                $row['precio_producto'] .
+                                                " dollar(s)</td>" .
+                                                "<td>" .
+                                                $row['cantidad'] .
+                                                "</td>" .
+                                                "</tr>";
+                                    }
+                                } else { }
+                                $conn->close();
+                                ?>
+                    </table>
+                    <br/>
+                    <br/>
+                    <button class="btn btn-success" onclick="location.href='./proceso_de_compra/fx.php'" style="float:right;">Pagar</button>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+        <script>
+        </script>
+        <?php
+            include './footer/footer.php';
+        ?>
+    </body>
 </html>
-
-<?php
-if (isset($_POST['submit'])) {
-  $connect = mysqli_connect("localhost","root","","floweb2");
-  session_start();
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-  $_SESSION['login_user'] = $username;
-  $query = mysqli_query($connect, "SELECT username FROM logs WHERE username='$username' and password='$password'");
-  if (mysqli_num_rows($query) != 0) {
-    echo "<script language='javascript' type='text/javascript'> location.href='./reportes/F09.php' </script>";
-  } else {
-    echo "<script type='text/javascript'>alert('User Name Or Password Invalid!')</script>";
-  }
-}
-?>
