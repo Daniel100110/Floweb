@@ -1,7 +1,7 @@
 <footer class="page-footer font-small teal pt-4">
   <div class="container-fluid text-center text-md-left">
     <div class="row" style="background-color:#5D6D7E;      
-          background-image: url('../imagenes/fondo_01.jpg');
+          background-image: url('./imagenes/fondo_01.jpg');
           background-repeat: no-repeat;
           background-attachment: fixed;
           background-size: cover;">

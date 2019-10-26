@@ -2,22 +2,19 @@
   session_start();
   if (isset($_SESSION['login_user'])) {
 ?>
-
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <?php
         include '../head/head.php';
-    ?>
+      ?>
     <title>[F03]CRUD MATERIALES</title>
     <link rel="stylesheet" href="../css/css_f03.css">
   </head>
-
   <body>
     <?php
         include '../head/header.php';
-        include '../nav/nav_empresa.php';
+        include '../nav/nav_on.php';
         include 'metodos_f03.php';
     ?>
     <div class="container-fluid" style="margin-top: 2%;">

@@ -8,7 +8,7 @@
 <html lang="en">
 
 <head>
-  <title>Login V17</title>
+  <title>Login</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="css/util.css">
@@ -48,12 +48,6 @@
             <input name="submit" type="submit" value="Iniciar" class="login100-form-btn">
           </div>
           <div class="w-full text-center p-t-27 p-b-239">
-            <span class="txt1">
-              Recuperar contraseña
-            </span>
-            <a href="#" class="txt2">
-              correo / contraseña
-            </a>
           </div>
           <div class="w-full text-center">
             <a href="#" class="txt3">
@@ -61,7 +55,7 @@
             </a>
           </div>
         </form>
-        <div class="login100-more" style="background-image: url('./imagenes/[pp]fondo.jpg');"></div>
+        <div class="login100-more" style="background-image: url('./imagenes/fondo_01.jpg');"></div>
       </div>
     </div>
   </div>

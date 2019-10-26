@@ -15,7 +15,6 @@
         } else { }
         $conn->close();
     }
-
     function insertar_material(){
         include '../conexion/conexion.php';
         $no_material_i = $_POST['no_material_i'];
@@ -32,7 +31,6 @@
         }
         $conn->close();
     }
-
     function modificar_material(){
         include '../conexion/conexion.php';
         $no_material_m = $_POST['no_material_m'];
@@ -73,7 +71,6 @@
         echo "<div class='alert alert-danger' role='alert'>¡Error!</div>";
         }
     }
-    
     function borrar_material(){
         include '../conexion/conexion.php';
         $no_material_b = $_POST['no_material_b'];

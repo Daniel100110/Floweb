@@ -17,7 +17,7 @@
   <body>
     <?php
         include '../head/header.php';
-        include '../nav/nav_empresa.php';
+        include '../nav/nav_on.php';
         include 'metodos_f04.php';
     ?>
     <div class="container-fluid" style="margin-top: 5%;">
