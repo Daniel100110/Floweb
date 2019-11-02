@@ -1,18 +1,17 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <?php
     include './head/head.php';
     ?>
-    <link rel="stylesheet" href="./css/css_f05.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/Features-Boxed.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-
 <body>
     <?php
     include './head/header.php';
@@ -48,7 +47,7 @@
                         <tr>
                             <?php
                             include './db/conexion.php';
-                            $sql = "select * from pedido";
+                            $sql = "select * from pedido inner join producto on pedido.no_producto = producto.no_producto";
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
@@ -83,10 +82,12 @@
     </div>
     </div>
     <script>
+    function agregar_a_carrito() {
+        alert('<?php agregar_a_carrito(); ?>');
+    }
     </script>
     <?php
     include './footer/footer_index.php';
     ?>
 </body>
-
 </html>
