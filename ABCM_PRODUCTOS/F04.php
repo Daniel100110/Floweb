@@ -1,262 +1,300 @@
 ﻿<?php
-  session_start();
-  if (isset($_SESSION['login_user'])) {
-?>
+session_start();
+if (isset($_SESSION['login_user'])) {
+  ?>
 
-<!DOCTYPE html>
+  <!DOCTYPE html>
+  <html lang="en">
 
-<html lang="en">
   <head>
     <?php
-        include '../head/head.php';
-    ?>
-    <title>[F03]CRUD MATERIALES</title>
+      include '../head/head.php';
+      ?>
     <link rel="stylesheet" href="../css/css_f04.css">
   </head>
-
+  <script>
+    function mostrar_alta() {
+      if (document.getElementById('alta').style.display === 'block') {
+        document.getElementById('img_alta').style.display = 'block';
+        document.getElementById('alta').style.display = 'none';
+        document.getElementById('img_baja').style.display = 'block';
+        document.getElementById('baja').style.display = 'none';
+        document.getElementById('img_consulta').style.display = 'block';
+        document.getElementById('consulta').style.display = 'none';
+        document.getElementById('img_modificacion').style.display = 'block';
+        document.getElementById('modificacion').style.display = 'none';
+      } else {
+        document.getElementById('img_alta').style.display = 'block';
+        document.getElementById('alta').style.display = 'block';
+        document.getElementById('img_baja').style.display = 'none';
+        document.getElementById('baja').style.display = 'none';
+        document.getElementById('img_consulta').style.display = 'none';
+        document.getElementById('consulta').style.display = 'none';
+        document.getElementById('img_modificacion').style.display = 'none';
+        document.getElementById('modificacion').style.display = 'none';
+      }
+    }
+    function mostrar_baja() {
+      if (document.getElementById('baja').style.display === 'block') {
+        document.getElementById('img_alta').style.display = 'block';
+        document.getElementById('alta').style.display = 'none';
+        document.getElementById('img_baja').style.display = 'block';
+        document.getElementById('baja').style.display = 'none';
+        document.getElementById('img_consulta').style.display = 'block';
+        document.getElementById('consulta').style.display = 'none';
+        document.getElementById('img_modificacion').style.display = 'block';
+        document.getElementById('modificacion').style.display = 'none';
+      } else {
+        document.getElementById('img_alta').style.display = 'none';
+        document.getElementById('alta').style.display = 'none';
+        document.getElementById('img_baja').style.display = 'block';
+        document.getElementById('baja').style.display = 'block';
+        document.getElementById('img_consulta').style.display = 'none';
+        document.getElementById('consulta').style.display = 'none';
+        document.getElementById('img_modificacion').style.display = 'none';
+        document.getElementById('modificacion').style.display = 'none';
+      }
+    }
+    function mostrar_consulta() {
+      if (document.getElementById('consulta').style.display === 'block') {
+        document.getElementById('img_alta').style.display = 'block';
+        document.getElementById('alta').style.display = 'none';
+        document.getElementById('img_baja').style.display = 'block';
+        document.getElementById('baja').style.display = 'none';
+        document.getElementById('img_consulta').style.display = 'block';
+        document.getElementById('consulta').style.display = 'none';
+        document.getElementById('img_modificacion').style.display = 'block';
+        document.getElementById('modificacion').style.display = 'none';
+      } else {
+        document.getElementById('img_alta').style.display = 'none';
+        document.getElementById('alta').style.display = 'none';
+        document.getElementById('img_baja').style.display = 'none';
+        document.getElementById('baja').style.display = 'none';
+        document.getElementById('img_consulta').style.display = 'block';
+        document.getElementById('consulta').style.display = 'block';
+        document.getElementById('img_modificacion').style.display = 'none';
+        document.getElementById('modificacion').style.display = 'none';
+      }
+    }
+    function mostrar_modificacion() {
+      if (document.getElementById('modificacion').style.display === 'block') {
+        document.getElementById('img_alta').style.display = 'block';
+        document.getElementById('alta').style.display = 'none';
+        document.getElementById('img_baja').style.display = 'block';
+        document.getElementById('baja').style.display = 'none';
+        document.getElementById('img_consulta').style.display = 'block';
+        document.getElementById('consulta').style.display = 'none';
+        document.getElementById('img_modificacion').style.display = 'block';
+        document.getElementById('modificacion').style.display = 'none';
+      } else {
+        document.getElementById('img_alta').style.display = 'none';
+        document.getElementById('alta').style.display = 'none';
+        document.getElementById('img_baja').style.display = 'none';
+        document.getElementById('baja').style.display = 'none';
+        document.getElementById('img_consulta').style.display = 'none';
+        document.getElementById('consulta').style.display = 'none';
+        document.getElementById('img_modificacion').style.display = 'block';
+        document.getElementById('modificacion').style.display = 'block';
+      }
+    }
+  </script>
   <body>
     <?php
-        include '../head/header.php';
-        include '../nav/nav_on.php';
-        include 'metodos_f04.php';
-    ?>
-    <div class="container-fluid" style="margin-top: 5%;">
+      include '../head/header.php';
+      include '../nav/nav_on.php';
+      include 'funciones_f04.php';
+      ?>
+    <div class="container" style="margin-top: 1%;">
       <div class="row">
-        <div class="col-sm-3">
+
+        <div id="img_alta" class="col-sm-6 col-md-4 col-lg-6">
           <table class="table">
             <thead>
               <tr>
                 <th scope="col" colspan="4" style="text-align:center; color:gray;">
-                  <h2>Materiales</h2>
+                  <h2>Dar de Alta</h2>
                 </th>
               </tr>
             </thead>
-            <thead>
-              <tr>
-                <th scope="col">Núm. de Material</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Cantidad</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              include '../CONEXION/conexion.php';
-              $sql = "select * from material";
-              $result = $conn->query($sql);
-              if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                  echo "<tr>
-                  <th scope='row'>" . $row['no_material'] . "</th>" .
-                    "<td>" . $row['nom_material'] . "</td>" .
-                    "<td>" . $row['cant_material'] . "</td>" .
-                    "<td>" . $row['status_material'] . "</td>
-                  </tr>";
-                }
-              } else { }
-              $conn->close();
-              ?>
-            </tbody>
           </table>
-          <br>
+          <center><button onclick="mostrar_alta()"><img class="img-fluid img-thumbnail" src="../imagenes/alta.jpg"></button></center>
+        </div>
+        <div id="img_consulta" class="col-sm-6 col-md-4 col-lg-6">
           <table class="table">
             <thead>
               <tr>
                 <th scope="col" colspan="4" style="text-align:center; color:gray;">
-                  <h2>Agregar arreglo</h2>
+                  <h2>Consultar</h2>
                 </th>
               </tr>
             </thead>
           </table>
-          <?php
+          <center><button onclick="mostrar_consulta()"><img class="img-fluid img-thumbnail" src="../imagenes/consulta.jpg"></button></center>
+        </div>
+        <div id="img_baja" class="col-sm-6 col-md-4 col-lg-6">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" colspan="4" style="text-align:center; color:gray;">
+                  <h2>Dar de Baja</h2>
+                </th>
+              </tr>
+            </thead>
+          </table>
+          <center><button onclick="mostrar_baja()"><img class="img-fluid img-thumbnail" src="../imagenes/baja.jpg"></button></center>
+        </div>
+        <div id="img_modificacion" class="col-sm-6 col-md-4 col-lg-6">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" colspan="4" style="text-align:center; color:gray;">
+                  <h2>Modificar</h2>
+                </th>
+              </tr>
+            </thead>
+          </table>
+          <center><button onclick="mostrar_modificacion()"><img class="img-fluid img-thumbnail" src="../imagenes/modificacion.jpg"></button></center>
+        </div>
 
-          echo '<html><head></head><body>';
-          echo '<form method="post" action="_insertarProducto.php" enctype="multipart/form-data">';
-          echo 'id: <input type="number" id="no_producto" name="no_producto" /><br />';
-          echo 'nombre: <input type="text" id="nom_producto" name="nom_producto" /><br />';
-          echo 'precio: <input type="number" id="precio_producto" name="precio_producto" /><br />';
-          echo 'cantidad: <input type="number" id="cantidad_producto" name="cantidad_producto" /><br />';
-          echo 'status: <input type="text" id="status_producto" name="status_producto" /><br />';
-          echo 'Fichero a recibir: <input type="file" id="myfile" name="myfile" /><br />';
-          echo '<input type="submit" value="Enviar">';
-          echo '</form>';
-
-          if (isset($_FILES) && isset($_FILES['myfile']) && !empty($_FILES['myfile']['name'] && !empty($_FILES['myfile']['tmp_name']))) {
-            //Hemos recibido el fichero
-            //Comprobamos que es un fichero subido por PHP, y no hay inyección por otros medios
-            if (!is_uploaded_file($_FILES['myfile']['tmp_name'])) {
-              echo "Error: El fichero encontrado no fue procesado por la subida correctamente";
-              exit;
-            }
-            $source = $_FILES['myfile']['tmp_name'];
-            $destination = __DIR__ . '/upload/' . $_FILES['myfile']['name'];
-
-            if (is_file($destination)) {
-              echo "Error: Ya existe almacenado un fichero con ese nombre";
-              @unlink(ini_get('upload_tmp_dir') . $_FILES['myfile']['tmp_name']);
-              exit;
-            }
-
-            if (!@move_uploaded_file($source, $destination)) {
-              echo "Error: No se ha podido mover el fichero enviado a la carpeta de destino";
-              @unlink(ini_get('upload_tmp_dir') . $_FILES['myfile']['tmp_name']);
-              exit;
-            }
-            echo "Fichero subido correctamente";
-          }
-          ?>
-
+        <div id="alta" class="col-sm-6 col-md-4 col-lg-6">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" colspan="4" style="text-align:center; color:gray;">
+                  <h2>-</h2>
+                </th>
+              </tr>
+            </thead>
+          </table>
+          <form method="post" enctype="multipart/form-data">
+            <table class="table">
+              <tr>
+                <td><label>Número del producto:</label></td>
+                <td></label><input type="number" name="no_producto"><br></td>
+              </tr>
+              <tr>
+                <td><label>Nombre del producto:</label></td>
+                <td><input type="text" name="nom_producto" /><br></td>
+              </tr>
+              <tr>
+                <td><label>Precio del producto:</label></td>
+                <td><input type="number" name="precio_producto"><br></td>
+              </tr>
+              <tr>
+                <td><label>Cantidad del producto:</label></td>
+                <td><input type="number" name="cantidad_producto"><br></td>
+              </tr>
+              <tr>
+                <td><label>Status del producto:</label></td>
+                <td><input type="text" name="status_producto"><br></td>
+              </tr>
+              <tr>
+                <td><label>Imagen del producto: </label></td>
+                <td><input type="file" name="img" /><br /></td>
+              </tr>
+              <tr>
+                <td colspan="2"><input type="submit" onclick="insertar_producto();" value="Dar de alta"></td>
+              </tr>
+            </table>
+          </form>
           <br>
         </div>
-        <div class="col-sm-6">
+        <div id="consulta" class="col-sm-6 col-md-4 col-lg-6">
           <table class="table">
             <thead>
               <tr>
-                <th scope="col" colspan="4" style="text-align:center;color:gray;">
-                  <h2>Fabricación</h2>
-                </th>
-              </tr>
-              <tr>
-                <th scope="col" colspan="2" style="text-align:right;color:gray;">
-                  <h2>Materiales requeridos</h2>
-                </th>
-                <th scope="col" colspan="1" style="text-align:right;color:gray;">
-                  <h2> = </h2>
-                </th>
-                <th scope="col" colspan="1" style="color:gray;">
-                  <h2>Arreglo</h2>
+                <th scope="col" colspan="4" style="text-align:center; color:gray;">
+                  <h2>-</h2>
                 </th>
               </tr>
             </thead>
-            <thead>
-              <tr>
-                <th scope="col">Número de lista</th>
-                <th scope="col">Número de material</th>
-                <th scope="col">Cantidad de material</th>
-                <th scope="col">Número de arreglo</th>
-              <tr>
-            </thead>
-            <tbody>
-
-              <?php
-              include '../conexion/conexion.php';
-              $sql = "select * from fabricacion";
-              $result = $conn->query($sql);
-              if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                  echo
-                    "<tr>
-                    <th scope='row'>" . $row['no_lista'] . "</th>" .
-                      "<td>" . $row['no_material'] . "</td>" .
-                      "<td>" . $row['cant_material'] . "</td>" .
-                      "<td>" . $row['no_producto'] . "</td>" .
-                      "</tr>";
-                }
-              } else { }
-              $conn->close();
-              ?>
-            </tbody>
           </table>
-          <div class="row">
-            <div class="col-sm-7">
-              <center>
-                <div id="border3">
-                  <div id="border2">
-                    <div id="border1">
-                      <div id="border0">
-                        <img src="../imagenes/rosas.jpg" style="width:100%;border-radius: 100%;">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </center>
-            </div>
-            <div class="col-sm-5">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col" colspan="4" style="text-align:center; color:gray;">
-                      <h2>Elementos requeridos</h2>
-                    </th>
-                  </tr>
-                </thead>
-              </table>
-              <form method="post">
-                <div class="form-group">
-                  <label>Núm. de lista:</label><input class="form-control" type="text" id="no_lista" name="no_lista">
-                  <label>Núm. de material:</label><input class="form-control" type="text" id="no_material" name="no_material">
-                  <label>cantidad de materiales:</label><input class="form-control" type="text" id="cant_material" name="cant_material">
-                  <label>Num de arreglo:</label><input class="form-control" type="text" id="no_arreglo" name="no_arreglo">
-                </div>
-                <input type="submit" class="btn btn-info" onclick="this.form.action = '_modificarFabricacion.php'" value="Modificar">
-                <input type="submit" class="btn btn-primary" style="float:right" onclick="this.form.action = '_insertarFabricacion.php'" value="Agregar">
-              </form><br> <br>
-            </div>
-          </div>
+          <table class="table">
+            <?php
+              consultar_producto();
+              ?>
+          </table>
         </div>
-        <div class="col-sm-3">
+        <div id="baja" class="col-sm-6 col-md-4 col-lg-6">
           <table class="table">
             <thead>
               <tr>
                 <th scope="col" colspan="4" style="text-align:center; color:gray;">
-                  <h2>Arreglos</h2>
+                  <h2>-</h2>
                 </th>
               </tr>
             </thead>
-            <thead>
-              <tr>
-                <th scope="col">Núm. de arreglo</th>
-                <th scope="col">Nombre del arreglo</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              include '../CONEXION/conexion.php';
-              $sql = "select * from producto";
-              $result = $conn->query($sql);
-              if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                  echo "<tr>
-                  <th scope='row'>" . $row['no_producto'] . "</th>" .
-                    "<td>" . $row['nom_producto'] . "</td>" .
-                    "<td>" . $row['status_producto'] . "</td>" .
-                    "</tr>";
-                }
-              } else { }
-              $conn->close();
-              ?>
-            </tbody>
           </table>
+          <form method="post" enctype="multipart/form-data">
+            <table class="table">
+              <tr>
+                <td><label>Número del producto:</label></td>
+                <td></label><input type="number" name="no_producto_b" /><br /></td>
+              </tr>
+              <tr>
+                <td></label><input type="submit" onclick="borrar_producto();" value="Dar de baja" /><br /></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <div id="modificacion" class="col-sm-6 col-md-4 col-lg-6">
           <table class="table">
             <thead>
               <tr>
                 <th scope="col" colspan="4" style="text-align:center; color:gray;">
-                  <h2>Eliminar arreglo</h2>
+                  <h2>-</h2>
                 </th>
               </tr>
             </thead>
           </table>
-          <form method="post">
-            <div class="form-group">
-              <label>Número del arreglo:</label><input class="form-control" type="text" id="no_arreglo" name="no_arreglo">
-              <br>
-              <input type="submit" class="btn btn-danger" onclick="this.form.action = '_borrarArreglo.php'" style="float:right;" value="Eliminar">
-              <br><br>
+          <form method="post" enctype="multipart/form-data">
+            <table class="table">
+              <tr>
+                <td><label>Número del producto:</label></td>
+                <td></label><input type="number" name="no_producto_m" /><br /></td>
+              </tr>
+              <tr>
+                <td><label>Nombre del producto:</label></td>
+                <td><input type="text" name="nom_producto_m" /><br /></td>
+              </tr>
+              <tr>
+                <td><label>Precio del producto:</label></td>
+                <td><input type="number" name="precio_producto_m" /><br /></td>
+              </tr>
+              <tr>
+                <td><label>Cantidad del producto:</label></td>
+                <td><input type="number" name="cantidad_producto_m" /><br /></td>
+              </tr>
+              <tr>
+                <td><label>Status del producto:</label></td>
+                <td><input type="text" name="status_producto_m" /><br /></td>
+              </tr>
+              <tr>
+                <td><label>Imagen del producto: </label></td>
+                <td><input type="file" name="imgs" /><br /></td>
+              </tr>
+              <tr>
+                <td colspan="2"><input type="submit" value="Modificar"></td>
+              </tr>
+            </table>
           </form>
         </div>
       </div>
     </div>
-    <script></script>
+    <script>
+      function insertar_producto() {
+        alert('<?php insertar_producto(); ?>');
+      }
+    </script>
     <?php
-        include '../footer/footer.php';
-    ?>
+      include '../footer/footer.php';
+      ?>
   </body>
-</html>
 
+  </html>
 <?php
-  }
-  if (!$_SESSION['login_user']) {
-    header("location:../index.php");
-  }
+}
+if (!$_SESSION['login_user']) {
+  header("location:index.php");
+}
 ?>

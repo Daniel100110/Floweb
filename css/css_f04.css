@@ -48,3 +48,14 @@
   p {
     color: white;
   }
+
+  #alta{display:none;}
+  #baja{display:none;}
+  #consulta{display:none;}
+  #modificacion{display:none;}
+
+  #img_alta{display:block;}
+  #img_baja{display:block;}
+  #img_consulta{display:block;}
+  #img_modificacion{display:block;}
+

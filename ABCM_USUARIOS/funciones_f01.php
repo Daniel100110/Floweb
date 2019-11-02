@@ -1,7 +1,7 @@
 
 <?php
     function consultar_cuenta(){
-      include '../conexion/conexion.php';
+      include '../db/conexion.php';
       $sqlc_01 = "select * from cuenta";
       $result = $conn->query($sqlc_01);
       if ($result->num_rows > 0) {
@@ -21,7 +21,7 @@
     }
 
     function consultar_acceso_01(){
-      include '../conexion/conexion.php';
+      include '../db/conexion.php';
       $sqlca_01 = "select * from acceso";
       $result = $conn->query($sqlca_01);
       if ($result->num_rows > 0) {
@@ -35,7 +35,7 @@
     }
 
     function consultar_acceso_02(){
-      include '../conexion/conexion.php';
+      include '../db/conexion.php';
       $sqlca_02 = "select * from acceso";
       $result = $conn->query($sqlca_02);
       if ($result->num_rows > 0) {
@@ -47,7 +47,7 @@
     }
 
     function insertar_usuario(){
-        include '../conexion/conexion.php';
+        include '../db/conexion.php';
         $no_cuenta_i = $_POST['no_cuenta_i'];
         $nom_completo_i = $_POST['nom_completo_i'];
         $tel_usuario_i = $_POST['tel_usuario_i'];
@@ -62,7 +62,7 @@
     }
 
     function insertar_acceso(){
-      include '../CONEXION/conexion.php';
+      include '../db/conexion.php';
       $no_acceso_ii = $_POST['no_acceso_ii'];
       $tipo_acceso_ii = $_POST['tipo_acceso_ii'];
       $status_acceso_ii = $_POST['status_acceso_ii'];
@@ -73,7 +73,7 @@
     }
 
     function borrar_acceso(){
-        include '../conexion/conexion.php';
+        include '../db/conexion.php';
         $no_acceso_b = $_POST['no_acceso_b'];
 
         $sqlba_01 = "delete from acceso where no_acceso = '$no_acceso_b'";
@@ -83,14 +83,14 @@
     }
 
     function borrar_usuario(){
-      include '../CONEXION/conexion.php';
+      include '../db/conexion.php';
       $no_cuenta_b_u = $_POST['no_cuenta_b_u'];
       $sqlb_01 = "delete from cuenta where no_cuenta = '$no_cuenta_b_u'";
       if ($conn->query($sqlb_01) === TRUE){}else{} $conn->close();
     }
 
     function modificar_acceso(){
-        include '../CONEXION/conexion.php';
+        include '../db/conexion.php';
         $no_acceso_mm = $_POST['no_acceso_mm'];
         $tipo_acceso_mm = $_POST['tipo_acceso_mm'];
         $status_acceso_mm = $_POST['status_acceso_mm'];
@@ -117,7 +117,7 @@
     }
 
     function modificar_usuario(){
-      include '../CONEXION/conexion.php';
+      include '../db/conexion.php';
       $no_cuenta_m = $_POST['no_cuenta_m'];
       $nom_completo_m = $_POST['nom_completo_m'];
       $tel_usuario_m = $_POST['tel_usuario_m'];

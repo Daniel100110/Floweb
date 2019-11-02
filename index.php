@@ -17,21 +17,16 @@
     <?php
     include './head/header.php';
     include './nav/nav_off.php';
-    include './proceso_de_venta/metodos_f05.php';
+    include 'funciones_index.php';
     ?>
     <div class="features-boxed">
         <div class="container">
             <div class="row">
                 <div class="col-sm-9">
                     <div class="row justify-content-center features">
-                        <div class="col-sm-6 col-md-5 col-lg-4 item">
-                            <div class="box">
-                                <img src="./imagenes/rosas.jpg" class="img-thumbnail">
-                                <h3 class="name">Rosas</h3>
-                                <p class="description">$100 mxm</p>
-                                <a href="#">Agregar al carrito</a>
-                            </div>
-                        </div>
+                            <?php
+                            mostrar_producto();
+                            ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -52,7 +47,7 @@
                         </thead>
                         <tr>
                             <?php
-                            include './conexion/conexion.php';
+                            include './db/conexion.php';
                             $sql = "select * from pedido";
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
