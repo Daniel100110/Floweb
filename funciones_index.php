@@ -32,11 +32,7 @@
         $sql_ccc='select ';
 
         $no_pedido = 1;//arreglar
-
-
-
-
-
+        
         $no_producto = $_POST['no_producto'];
         $cantidad = 1;
         $no_carrito = 1;

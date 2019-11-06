@@ -15,7 +15,7 @@ create database Floweb;
     correo_cuenta varchar(55),
     contra_cuenta varchar(55),
     no_acceso int not null,
-    foreign key (no_acceso) references acceso(no_acceso) on delete cascade,
+    foreign key (no_acceso) references acceso(no_acceso),
     status_cuenta varchar(30)
   );
   
@@ -33,7 +33,7 @@ create database Floweb;
     no_carrito int primary key not null,
     no_cuenta int,
     status_carrito varchar(30),
-    foreign key(no_cuenta) references cuenta(no_cuenta) on delete cascade
+    foreign key(no_cuenta) references cuenta(no_cuenta)
   );
 
   create table pedido(
@@ -41,8 +41,8 @@ create database Floweb;
     no_producto int,
     cantidad int,
     no_carrito int,
-    foreign key (no_producto) references producto(no_producto) on delete cascade,
-    foreign key (no_carrito) references carrito(no_carrito) on delete cascade
+    foreign key (no_producto) references producto(no_producto),
+    foreign key (no_carrito) references carrito(no_carrito)
   );
 
   create table iva(
@@ -58,6 +58,6 @@ create database Floweb;
     no_iva int,
     precio_total float,
     status_pedido varchar(30),
-    foreign key (no_iva) references iva(no_iva) on delete cascade,
-    foreign key (no_carrito) references carrito(no_carrito) on delete cascade
+    foreign key (no_iva) references iva(no_iva),
+    foreign key (no_carrito) references carrito(no_carrito)
   );
