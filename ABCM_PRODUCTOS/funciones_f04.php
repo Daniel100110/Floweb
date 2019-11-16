@@ -1,5 +1,4 @@
 <?php
-
     function consultar_producto(){
       include '../db/conexion.php';
       $sql_c = "select * from producto";
@@ -8,7 +7,7 @@
         while ($row = $result_c->fetch_assoc()) {
           echo "<tr>
             <th>[" . $row['no_producto'] . "]</th>" .
-            "<td><img class='img-thumbnail' src='../imagenes/" . $row['foto_producto'] . "' width='100px' heitgh='100px'></td>" .
+            "<td><img class='img-thumbnail' src='../pictures/".$row['foto_producto']."' width='100px' heitgh='100px'></td>" .
             "<td>" . $row['nom_producto'] . "</td>" .
             "<td>$" . $row['precio_producto'] . "</td>" .
             "<td>" . $row['cantidad_producto'] . "</td>" .
@@ -22,13 +21,13 @@
     function insertar_producto(){
       include '../db/conexion.php';
         $a = $_POST['no_producto'];
-        $b = $_FILES['img']['name'];
-        $c = $_POST['nom_producto'];
+        $b = $_POST['nom_producto'];
+        $c = $_POST['cantidad_producto'];
         $d = $_POST['precio_producto'];
-        $e = $_POST['cantidad_producto'];
+        $e = $_FILES['img']['name'];
         $f = $_POST['status_producto'];
         $ruta=$_FILES['img']['tmp_name'];
-        $destino="../imagenes/".$b;
+        $destino="../pictures/".$e;
         if(copy($ruta,$destino))
         {
           $sql = "insert into producto values ('$a','$b','$c','$d','$e','$f');";
@@ -45,5 +44,19 @@
     }
 
     function borrar_producto(){
+      include '../db/conexion.php';
+      $no_producto_b = $_POST['no_producto_b'];
+
+      $sql_b = "select foto_producto from producto where no_producto='$no_producto_b'";
+      $result_b = $conn->query($sql_b);
+        if ($result_b->num_rows > 0) {
+          while ($row = $result_b->fetch_assoc()) {
+              unlink('../pictures/'.$row['foto_producto']);
+              $sql_b2 = "delete from producto where no_producto='$no_producto_b';";
+              if ($conn->query($sql_b2)) {
+              } else {}
+          }
+        } else {}
+      $conn->close(); 
     }
 ?>

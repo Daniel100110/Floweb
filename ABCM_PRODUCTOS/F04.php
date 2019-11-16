@@ -1,11 +1,9 @@
 ﻿<?php
-session_start();
-if (isset($_SESSION['login_user'])) {
-  ?>
-
+  session_start();
+  if (isset($_SESSION['login_user'])) {
+?>
   <!DOCTYPE html>
   <html lang="en">
-
   <head>
     <?php
       include '../head/head.php';
@@ -117,7 +115,7 @@ if (isset($_SESSION['login_user'])) {
               </tr>
             </thead>
           </table>
-          <center><button onclick="mostrar_alta()"><img class="img-fluid img-thumbnail" src="../imagenes/alta.jpg"></button></center>
+          <center><button onclick="mostrar_alta()"><img class="img-fluid img-thumbnail" src="../img/alta.jpg"></button></center>
         </div>
         <div id="img_consulta" class="col-sm-6 col-md-4 col-lg-6">
           <table class="table">
@@ -129,7 +127,7 @@ if (isset($_SESSION['login_user'])) {
               </tr>
             </thead>
           </table>
-          <center><button onclick="mostrar_consulta()"><img class="img-fluid img-thumbnail" src="../imagenes/consulta.jpg"></button></center>
+          <center><button onclick="mostrar_consulta()"><img class="img-fluid img-thumbnail" src="../img/consulta.jpg"></button></center>
         </div>
         <div id="img_baja" class="col-sm-6 col-md-4 col-lg-6">
           <table class="table">
@@ -141,7 +139,7 @@ if (isset($_SESSION['login_user'])) {
               </tr>
             </thead>
           </table>
-          <center><button onclick="mostrar_baja()"><img class="img-fluid img-thumbnail" src="../imagenes/baja.jpg"></button></center>
+          <center><button onclick="mostrar_baja()"><img class="img-fluid img-thumbnail" src="../img/baja.jpg"></button></center>
         </div>
         <div id="img_modificacion" class="col-sm-6 col-md-4 col-lg-6">
           <table class="table">
@@ -153,7 +151,7 @@ if (isset($_SESSION['login_user'])) {
               </tr>
             </thead>
           </table>
-          <center><button onclick="mostrar_modificacion()"><img class="img-fluid img-thumbnail" src="../imagenes/modificacion.jpg"></button></center>
+          <center><button onclick="mostrar_modificacion()"><img class="img-fluid img-thumbnail" src="../img/modificacion.jpg"></button></center>
         </div>
 
         <div id="alta" class="col-sm-6 col-md-4 col-lg-6">
@@ -229,10 +227,10 @@ if (isset($_SESSION['login_user'])) {
             <table class="table">
               <tr>
                 <td><label>Número del producto:</label></td>
-                <td></label><input type="number" name="no_producto_b" /><br /></td>
+                <td><input type="number" name="no_producto_b" /><br /></td>
               </tr>
               <tr>
-                <td></label><input type="submit" onclick="borrar_producto();" value="Dar de baja" /><br /></td>
+                <td><input type="submit" onclick="borrar_producto();" value="Dar de baja" /><br /></td>
               </tr>
             </table>
           </form>
@@ -284,6 +282,9 @@ if (isset($_SESSION['login_user'])) {
     <script>
       function insertar_producto() {
         alert('<?php insertar_producto(); ?>');
+      }
+      function borrar_producto() {
+        alert('<?php borrar_producto(); ?>');
       }
     </script>
     <?php

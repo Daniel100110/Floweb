@@ -1,11 +1,13 @@
 <?php
-session_start();
+  session_start();
+  if (isset($_SESSION['login_user'])) {
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <?php
-    include './head/head.php';
+    include '../head/head.php';
     ?>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
@@ -14,14 +16,15 @@ session_start();
 </head>
 <body>
     <?php
-    include './head/header.php';
-    include './nav/nav_off.php';
+    include '../head/header.php';
+    include '../nav/nav_on.php';
     include 'funciones_index.php';
     ?>
     <div class="features-boxed">
         <div class="container">
             <div class="row">
                 <div class="col-sm-9">
+                    <br>
                     <div class="row justify-content-center features">
                             <?php
                             mostrar_producto();
@@ -30,7 +33,7 @@ session_start();
                 </div>
                 <div class="col-sm-3">
                     <br>
-                    <img class='img-thumbnail' src="./imagenes/carrito.jpg">
+                    <img class='img-thumbnail' src="../img/carrito.jpg">
                     <br /> <br />
                     <table width='100%' style="background-color:white;text-align:center;">
                         <thead>
@@ -38,37 +41,14 @@ session_start();
                                 <th colspan="4" style="text-align:center;">Lista de compras</th>
                             </tr>
                             <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Precio</th>
-                                <th scope="col">Cantidad</th>
+                                <th scope="col">Pedido</th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Estado</th>
                             </tr>
                         </thead>
                         <tr>
                             <?php
-                            include './db/conexion.php';
-                            $sql = "select * from pedido inner join producto on pedido.no_producto = producto.no_producto";
-                            $result = $conn->query($sql);
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo
-                                        "<tr>" .
-                                            "<td>" .
-                                            $row['no_producto'] .
-                                            "</td>" .
-                                            "<td>" .
-                                            $row['nom_producto'] .
-                                            "</td>" .
-                                            "<td>$" .
-                                            $row['precio_producto'] .
-                                            " dollar(s)</td>" .
-                                            "<td>" .
-                                            $row['cantidad'] .
-                                            "</td>" .
-                                            "</tr>";
-                                }
-                            } else { }
-                            $conn->close();
+                                mostrar_carrito();
                             ?>
                     </table>
                     <br />
@@ -87,7 +67,13 @@ session_start();
     }
     </script>
     <?php
-    include './footer/footer_index.php';
+    include '../footer/footer.php';
     ?>
 </body>
 </html>
+<?php
+  }
+  if (!$_SESSION['login_user']) {
+    header("location:../index.php");
+  }
+?>
