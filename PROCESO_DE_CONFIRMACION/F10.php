@@ -17,8 +17,8 @@
   <body>
     <?php
         include '../head/header.php';
-        include '../nav/nav_empresa.php';
-        include 'metodos_f10.php';
+        include '../nav/nav_on.php';
+        // include 'metodos_f10.php';
     ?>
     <div class="container-fluid">
         <div class="row">
@@ -34,7 +34,7 @@
           </thead>
           <tbody>
             <?php
-            include '../CONEXION/conexion.php';
+            include '../db/conexion.php';
             $sql = "select * from carrito inner join carrito_producto on carrito.no_carrito=carrito_producto.no_carrito inner join producto on carrito_producto.no_producto=producto.no_producto";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -57,7 +57,7 @@
         $var1 = 0;
         $var2 = 0;
 
-            include '../CONEXION/conexion.php';
+            include '../db/conexion.php';
             $sql = "select sum(producto.precio_producto*carrito_producto.cantidad) as b from carrito_producto inner join producto on carrito_producto.no_producto=producto.no_producto";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -96,6 +96,6 @@
 <?php
   } 
   if (!$_SESSION['login_user']) {
-    header("location:../index.php");
+    header("location:../login.php");
   }
 ?>

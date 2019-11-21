@@ -1,7 +1,6 @@
 <?php
 
-  include '../CONEXION/conexion.php';
-  // $a = $_POST['no_cliente'];
+  include '../db/conexion.php';
   $c = $_POST['subtotal'];
   $d = $_POST['iva'];
   $e = $_POST['total'];

@@ -9,13 +9,12 @@
           "<div class='col-sm-7 col-md-6 col-lg-5 item'>" .
             "<div class='box'>" .
               "<form method='post'>" .
-                "<input name='no_producto' type='number' value='" . $row['no_producto'] . "' hidden></input>" .
-                "<img class='img-thumbnail' src='../pictures/" . $row['foto_producto'] . "' class='img-thumbnail'>" .
+                "<input name='no_producto' type='number' value='" . $row['no_producto'] . "' hidden>" .
+                "<img class='img-thumbnail' src='../pictures/" . $row['foto_producto'] . "'>" .
                 "<br><br>" .
-                "<center>" .
-                  $row['nom_producto'] . "</br>" .
-                  "Precio: $" . $row['precio_producto'] . " mxn.</br><br>" .
-                  "<input type='submit' onclick='agregar_a_carrito();' value='Agregar al carrito'></input>" .
+                "<center>" . $row['nom_producto'] . "<br>" .
+                  "Precio: $" . $row['precio_producto'] . " mxn.<br><br>" .
+                  "<input name='submit' type='submit' value='Agregar al carrito'>" .
                 "</center>" .
               "</form>" .
             "</div>" .
@@ -24,42 +23,23 @@
     } else { }
     $conn->close();
   }
-  function agregar_a_carrito(){
-    include '../db/conexion.php';
-    $no_producto = $_POST['no_producto'];
-    $correo=$_SESSION['login_user'];
-    $status_carrito="En proceso";
-
-    $sql_a = "select no_cuenta from cuenta where correo_cuenta = '$correo'";
-    $result_a = $conn->query($sql_a);
-    if ($result_a->num_rows > 0) {
-      while ($row = $result_a->fetch_assoc()) {
-        $no_cuenta=$row['no_cuenta'];
-      }
-      $sql_a2 = "insert into carrito values ('$no_cuenta', '$no_producto','$status_carrito');";
-        if ($conn->query($sql_a2)) {
-          echo "¡Registro agregado exitosamente!";
-        } else {
-        }
-    } else { }
-    $conn->close();
-  }
   function mostrar_carrito(){
     include '../db/conexion.php';
-    $sql = "select * from carrito";
+    $correo=$_SESSION['login_user'];
+    $sql = "";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             echo
                 "<tr>" .
                   "<td>" .
-                      $row['no_cuenta'] .
+                      $row['nom_producto'] .
                   "</td>" .
                   "<td>" .
-                    $row['no_producto'] .
+                    $row['cantidad_producto'] .
                   "</td>" .
                   "<td>" .
-                    $row['status_carrito'] .
+                    $row['precio_producto'] .
                   "</td>" .
                 "</tr>";
         }
