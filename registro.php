@@ -3,7 +3,6 @@ if (isset($_SESSION['login_user'])) {
   header("location:home.php");
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,8 +88,8 @@ if (isset($_SESSION['login_user'])) {
       <div class="col-sm-4">
       </div>
       <div class="col-sm-4">
-        <form class="needs-validation"  method="post">
-          <img class="mb-4" src="./img/logo.png" alt="" width="100%" height="85px">
+        <form class="needs-validation" method="post">
+          <img class="mb-4" src="./img/logo.png" alt="" width="100%" height="100px">
           <br>
           <center><span>Registro de cuenta</span></center>
           <span>Correo:</span>
@@ -116,28 +115,28 @@ if (isset($_SESSION['login_user'])) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script>
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function() {
-                'use strict'
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+      'use strict'
 
-                window.addEventListener('load', function() {
-                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                    var forms = document.getElementsByClassName('needs-validation')
+      window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation')
 
-                    // Loop over them and prevent submission
-                    Array.prototype.filter.call(forms, function(form) {
-                        form.addEventListener('submit', function(event) {
-                            if (form.checkValidity() === false) {
-                                event.preventDefault()
-                                event.stopPropagation()
-                            }
-                            form.classList.add('was-validated')
-                        }, false)
-                    })
-                }, false)
-            }())
-        </script>
-<?php
+        // Loop over them and prevent submission
+        Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+            form.classList.add('was-validated')
+          }, false)
+        })
+      }, false)
+    }())
+  </script>
+  <?php
   if (isset($_POST['submit'])) {
     include './db/conexion.php';
     $correo_cuenta = $_POST['correo_cuenta'];
@@ -145,20 +144,19 @@ if (isset($_SESSION['login_user'])) {
     $contra_cuenta2 = $_POST['contra_cuenta2'];
     $no_acceso = 1;
     $status_cuenta = "offline";
-    if(strcmp($contra_cuenta, $contra_cuenta2) === 0){
+    if (strcmp($contra_cuenta, $contra_cuenta2) === 0) {
       $sql = "insert into cuenta values ('$correo_cuenta','$contra_cuenta','$no_acceso','$status_cuenta');";
       if ($conn->query($sql)) {
-          echo "<script>swal('¡Bienvenido!', '¡Cuenta creada exitosamente!', 'success');</script>";
+        echo "<script>swal('¡Bienvenido!', '¡Cuenta creada exitosamente!', 'success');</script>";
       } else {
-          echo "<script>swal('¡La cuenta ya existe!', '¡La cuenta ya existe o falta un campo!', 'error');</script>";
-      } $conn->close();
-    }
-    else{
+        echo "<script>swal('¡La cuenta ya existe!', '¡La cuenta ya existe o falta un campo!', 'error');</script>";
+      }
+      $conn->close();
+    } else {
       echo "<script>swal('¡Error!', '¡Las contraseñas no coinciden!', 'error');</script>";
     }
-
   }
-?>
+  ?>
 </body>
 
 </html>

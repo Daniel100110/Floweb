@@ -16,13 +16,16 @@ create database Floweb;
   );
 
   create table datosPersonales(
-    no_registro int primary key not null AUTO_INCREMENT,
-    correo_cuenta varchar(60),
-    nom_completo varchar(255) not null,
-    tel_usuario varchar(15) not null,
-    dir1_usuario varchar(75) not null,
-    dir2_usuario varchar(75) not null,
-    saldo_usuario int not null,
+    correo_cuenta varchar(60) not null,
+    nom_persona varchar(60) not null,
+    tel_persona varchar(13) not null,
+    dir1_persona varchar(100) not null,
+    dir2_persona varchar(100) not null,
+    estado_persona varchar(100) not null,
+    estado_persona varchar(100) not null,
+    ciudad_persona varchar(100) not null,
+    cp_persona varchar(75) not null,
+    saldo_persona int not null,
     foreign key (correo_cuenta) references cuenta(correo_cuenta)
   );
   

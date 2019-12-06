@@ -11,30 +11,7 @@ if (isset($_SESSION['login_user'])) {
             ?>
         <title>[F06]CRUD MATERIALES</title>
         <link rel="stylesheet" href="../css/css_f06.css">
-        <style>
-            .bd-placeholder-img {
-                font-size: 1.125rem;
-                text-anchor: middle;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-
-            @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                    font-size: 3.5rem;
-                }
-            }
-
-            .container {
-                max-width: 960px;
-            }
-
-            .lh-condensed {
-                line-height: 1.25;
-            }
-        </style>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
 
     <body>
@@ -49,207 +26,168 @@ if (isset($_SESSION['login_user'])) {
                 <div class="col-md-4 order-md-2 mb-4">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-muted">Tu carrito</span>
-                        <span class="badge badge-secondary badge-pill">3</span>
+                        <span class="badge badge-secondary badge-pill"><?php ver_num_productos(); ?></span>
                     </h4>
-                    <ul class="list-group mb-3">
-                        <?php ver_carrito(); ?>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span>Total (USD)</span>
-                            <strong>$20</strong>
-                        </li>
-                    </ul>
-
-                    <form class="card p-2">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Código promocional">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-secondary">Reclamar</button>
-                            </div>
-                        </div>
+                    <form method="POST">
+                        <ul class="list-group mb-3">
+                            <?php ver_carrito(); ?>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <strong>Subtotal:</strong>
+                                <span><?php ver_subtotal();?></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <strong>Iva:</strong>
+                                <span>8%</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <strong>Total (MXN):</strong>
+                                <span><?php ver_total();?></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <strong>Saldo:</strong>
+                                <span><?php ver_saldo();?></span>
+                            </li>
+                        </ul>
+                        <input name="submit2" class="btn btn-success btn-lg btn-block" type="submit" value="Pagar"><br>
                     </form>
                 </div>
                 <div class="col-md-8 order-md-1">
-                    <h4 class="mb-3">Pedido</h4>
-                    <form class="needs-validation" action="../login.php"  novalidate>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="firstName">Nombre</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="Ejemplo: José" value="" required>
-                                <div class="invalid-feedback">
-                                    El nombre es obligatorio.
+                    <div class="card p-2">
+                        <h4 class="mb-3">
+                            <center>Dirección de envio</center>
+                        </h4>
+                        <hr class="mb-3">
+                        <form method="post">
+                            <div class="mb-3">
+                                <label>Nombre:</label>
+                                <input name="nom_persona" type="text" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label>Teléfono celular (opcional):</label>
+                                <input name="tel_persona" type="tel" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address">Dirección:</label>
+                                <input name="dir1_persona" type="text" class="form-control" placeholder="Ejemplo: colonia, calle, número exterior." required>
+                            </div>
+                            <div class="mb-3">
+                                <label>Dirección detallada:</label>
+                                <input name="dir2_persona" type="text" class="form-control" placeholder="Ejemplo: número, color de la casa, referencias como tiendas o locales." Required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 mb-3">
+                                    <label>Estado:</label>
+                                    <select name="estado_persona" class="custom-select d-block w-100" required>
+                                        <option value="Baja California">Baja California</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label>Ciudad:</label>
+                                    <select name="ciudad_persona" class="custom-select d-block w-100" required>
+                                        <option value="Tijuana">Tijuana</option>
+                                        <option value="Rosarito">Rosarito</option>
+                                        <option value="Tecate">Tecate</option>
+                                        <option value="Mexicali">Mexicali</option>
+                                        <option value="Ensenada">Ensenada</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label>Código Postal:</label>
+                                    <input name="cp_persona" type="text" class="form-control" required>
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="lastName">Apellido</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Ejemplo: Peréz" value="" required>
-                                <div class="invalid-feedback">
-                                    El apellido es obligario.
-                                </div>
-                            </div>
+                            <input name="submit" type="submit" class="btn btn-outline-warning btn-lg btn-block" value="Guardar información">
+                        </form>
+                        <form>
+                            <!-- <button type="submit" class="btn btn-outline-info">Usar mi dirección</button> -->
+                        </form>
+                    </div>
+                    <br>
+                    <div class="card p-2">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="materialGroupExample1" name="groupOfMaterialRadios">
+                            <label class="form-check-label" for="materialGroupExample1">Saldo.</label>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="username">Nombre de usuario</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">@</span>
-                                </div>
-                                <input type="text" class="form-control" id="username" placeholder="Ejemplo: José_Peréz_20" required>
-                                <div class="invalid-feedback" style="width: 100%;">
-                                    El nombre de usuario es obligatorio.
-                                </div>
-                            </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="materialGroupExample2" name="groupOfMaterialRadios" checked>
+                            <label class="form-check-label" for="materialGroupExample2">Paypal.</label>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="email">Correo electrónico</label>
-                            <input type="email" class="form-control" id="email" placeholder="josePerez123@ejemplo.com" required>
-                            <div class="invalid-feedback">
-                                Por favor ingresa un correo valido.
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="address">Dirección</label>
-                            <input type="text" class="form-control" id="address" placeholder="Ejemplo: colonia, calle, número exterior." required>
-                            <div class="invalid-feedback">
-                                Por favor, ingresa tu dirección para que recibas tus productos.
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="address2">Dirección detallada</label>
-                            <input type="text" class="form-control" id="address2" placeholder="Ejemplo: número, color de la casa, referencias como tiendas o locales." Required>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-5 mb-3">
-                                <label for="country">Estado</label>
-                                <select class="custom-select d-block w-100" id="country" required>
-                                    <option value="">Elige...</option>
-                                    <option>Baja California</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                Proporcione un estado válido.
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="state">Ciudad</label>
-                                <select class="custom-select d-block w-100" id="state" required>
-                                    <option value="">Elige...</option>
-                                    <option>Tijuana</option>
-                                    <option>Rosarito</option>
-                                    <option>Tecate</option>
-                                    <option>Mexicali</option>
-                                    <option>Ensenada</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                Proporcione una ciudad válida.
-                                </div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="zip">Código Postal</label>
-                                <input type="text" class="form-control" id="zip" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Es requerido el código postal.
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="mb-4">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="same-address">
-                            <label class="custom-control-label" for="same-address">La dirección de envío es la misma que mi dirección de facturación.</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="save-info">
-                            <label class="custom-control-label" for="save-info">Guardar esta información para la próxima vez</label>
-                        </div>
-                        <hr class="mb-4">
-
-                        <h4 class="mb-3">Método de pago</h4>
-
-                        <div class="d-block my-3">
-                            <div class="custom-control custom-radio">
-                                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                                <label class="custom-control-label" for="credit">Tarjeta de crédito</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                                <label class="custom-control-label" for="debit">Tarjeta de debito</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                                <label class="custom-control-label" for="paypal">PayPal</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="cc-name">Nombre que aparece en la tarjeta</label>
-                                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                                <small class="text-muted">Nombre completo como se muestra en la tarjeta.</small>
-                                <div class="invalid-feedback">
-                                    Es requerido llenar el campo del nombre que aparece en su tarjeta. 
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="cc-number">Número de tarjeta</label>
-                                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    El numero de tarjeta es requerido.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3 mb-3">
-                                <label for="cc-expiration">Expiración</label>
-                                <input type="text" class="form-control" id="cc-expiration" required>
-                                <div class="invalid-feedback">
-                                    La fecha de expiracion es requerida.
-                                </div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="cc-cvv">CVV</label>
-                                <input type="text" class="form-control" id="cc-cvv" required>
-                                <div class="invalid-feedback">
-                                    El código de seguridad es requerido
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="mb-4">
-                        <button class="btn btn-primary btn-lg btn-block" type="submit">Pagar</button>
-                    </form>
+                    </div>
+                    <br>
                 </div>
             </div>
-
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script>
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function() {
-                'use strict'
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <?php
+            if (isset($_POST['submit'])) {
+                include '../db/conexion.php';
+                $correo_06 = $_SESSION['login_user'];
+                $sql_06 = "select * from datosPersonales where correo_cuenta='$correo_06'";
+                $result_06 = $conn -> query($sql_06);
+                if ($result_06 -> num_rows > 0) 
+                {
+                  echo "<script>swal('¡El registro ya existe!', '¡No se ha agregado!', 'info');</script>";
+                } 
+                else 
+                { 
+                  $nom_persona = $_POST['nom_persona'];
+                  $tel_persona = $_POST['tel_persona'];
+                  $dir1_persona = $_POST['dir1_persona'];
+                  $dir2_persona = $_POST['dir2_persona'];
+                  $cp_persona = $_POST['cp_persona'];
+                  $saldo_persona = 0;
+                  $sql_07 = "insert into datosPersonales values ('$correo_06','$nom_persona','$tel_persona','$dir1_persona','$dir2_persona','$cp_persona','$saldo_persona');";
+                    if ($conn->query($sql_07)) {
+                      echo "<script>swal('¡Producto agregado!', '¡Se ha agregado!', 'success');</script>";
+                    } else {
+                      echo "<script>swal('¡Error!', '¡No se ha agregado!', 'error');</script>";
+                    }
+                }
+                $conn->close();
+            }
 
-                window.addEventListener('load', function() {
-                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                    var forms = document.getElementsByClassName('needs-validation')
+            if (isset($_POST['submit2'])) {
+                include '../db/conexion.php';
+                $correo_07 = $_SESSION['login_user'];
+                $lista_productos=get_productos();
+                $subtotal=get_subtotal();
+                $iva=8;
+                $total=get_total();
 
-                    // Loop over them and prevent submission
-                    Array.prototype.filter.call(forms, function(form) {
-                        form.addEventListener('submit', function(event) {
-                            if (form.checkValidity() === false) {
-                                event.preventDefault()
-                                event.stopPropagation()
-                            }
-                            form.classList.add('was-validated')
-                        }, false)
-                    })
-                }, false)
-            }())
-        </script>
+                $sql_07 = "select * from pedido where pedido.correo_cuenta='$correo_07'";
+                $result_07 = $conn -> query($sql_07);
+                if ($result_07 -> num_rows > 0) 
+                {
+                    echo "<script language='javascript' type='text/javascript'>" .
+                    "location.href='../proceso_de_envio/F08.php'" .
+                    "</script>";
+                } 
+                else 
+                { 
+                  $sql_08 = "insert into pedido (correo_cuenta,lista_productos,subtotal_pedido,iva_pedido,total_pedido) values ('$correo_07','$lista_productos','$subtotal','$iva','$total');";
+                    if ($conn->query($sql_08)) {
+                      echo "<script>swal('¡Pedido agregado!', '¡Se ha agregado!', 'success');</script>";
+                      echo "<script language='javascript' type='text/javascript'>" .
+                      "location.href='../proceso_de_envio/F08.php'" .
+                      "</script>";
+                    } else {
+                      echo "<script>swal('¡Error!', '¡No se ha agregado!', 'error');</script>";
+                    }
+                }
+                $conn->close();
+            }
+        ?>
+        <?php
+            include '../footer/footer.php';
+        ?>
     </body>
+
     </html>
 <?php
 }
 if (!$_SESSION['login_user']) {
-    header("location:../index.php");
+    header("location:../login.php");
 }
 ?>

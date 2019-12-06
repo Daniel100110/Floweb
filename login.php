@@ -94,10 +94,10 @@ if (isset($_SESSION['login_user'])) {
           <br>
           <center><span>Inicio de sesión</span></center>
           <span>Correo:</span>
-          <input type="text" class="form-control" name="correo_cuenta" placeholder="josePerez123@ejemplo.com" requiered>
+          <input type="text" class="form-control" name="correo_cuenta" requiered>
           <span class="focus-input100"></span>
           <span>Contraseña:</span>
-          <input type="password" class="form-control" name="contra_cuenta" placeholder="contra123$%#" required>
+          <input type="password" class="form-control" name="contra_cuenta" required>
           <label>Tipo de acceso:</label>
           <select class="form-control" name="no_acceso" required>
             <option value=1>Cliente</option>

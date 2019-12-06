@@ -2,19 +2,17 @@
 <?php
     function consultar_cuenta(){
       include '../db/conexion.php';
-      $sqlc_01 = "select * from cuenta";
+      $sqlc_01 = "select * from cuenta inner join acceso on cuenta.no_acceso =  acceso.no_acceso";
       $result = $conn->query($sqlc_01);
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
           echo  
-          "<tr><th scope='row'>" . $row['no_cuenta'] .
-            "</th>" . "<td>" . $row['nom_completo'] . "</td>" .
-            "<td>" . $row['tel_usuario'] . "</td>" .
-            "<td>" . $row['dir_usuario'] . "</td>" .
-            "<td>" . $row['correo_cuenta'] . "</td>" .
-            "<td>" . $row['contra_cuenta'] . "</td>" .
-            "<td>" . $row['no_acceso'] . "</td>" .
-            "<td>" . $row['status_cuenta'] . "</td>" . "</tr>";
+          "<tr><th scope='row'>" . $row['correo_cuenta'] .
+            "</th>" . 
+              "<td>" . $row['contra_cuenta'] . "</td>" .
+              "<td>" . $row['tipo_acceso'] . "</td>" .
+              "<td>" . $row['status_cuenta'] . "</td>". 
+            "</tr>";
         }
       } else { }
       $conn->close();
@@ -57,7 +55,6 @@
         $no_acceso_i = $_POST['no_acceso_i'];
         $status_cuenta_i = $_POST['status_cuenta_i'];
         $sqli_01 = "insert into cuenta values ('$no_cuenta_i','$nom_completo_i','$tel_usuario_i','$dir_usuario_i', '$correo_cuenta_i','$contra_cuenta_i','$no_acceso_i','$status_cuenta_i');";
-        $sqli_02 = "insert into carrito values ('$no_cuenta_i','$no_cuenta_i','$status_cuenta_i');";
         if ($conn->query($sqli_01) === TRUE) {} else {} $conn->close();
     }
 
@@ -75,9 +72,7 @@
     function borrar_acceso(){
         include '../db/conexion.php';
         $no_acceso_b = $_POST['no_acceso_b'];
-
         $sqlba_01 = "delete from acceso where no_acceso = '$no_acceso_b'";
-
         if ($conn->query($sqlba_01) === TRUE) {} else {}
         $conn->close();
     }

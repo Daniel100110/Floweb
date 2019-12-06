@@ -17,7 +17,7 @@
     <body>
         <?php
             include '../head/header.php';
-            include '../nav/nav_empresa.php';
+            include '../nav/nav_on.php';
             include 'metodos_f08.php';
         ?>
         <div class="container-fluid">
@@ -25,10 +25,10 @@
                 <div class="col-sm-12">
                     <br>
                     <center>
-                        <img src="../IMAGENES/mensajero.gif"><br />
+                        <img src="../img/mensajero.gif"><br />
                         Gracias por su compra <br />
                         Su pedido se le entregara en los proximos 3 dias habiles<br /> <br>
-                        <button class="btn btn-success" onclick="location.href='../PROCESO_DE_VENTA/fx.php'"">Siguiente</button>
+                        <button class="btn btn-success" onclick="location.href='../proceso_de_venta/index.php'"">Siguiente</button>
                 </center>
             </div>
         </div>
@@ -39,9 +39,9 @@
     </body>
 </html>
 
-<?php 
-    }
-    if (!$_SESSION['login_user']) {
-        header("location:../index.php");
-    }
+<?php
+}
+if (!$_SESSION['login_user']) {
+    header("location:../login.php");
+}
 ?>
