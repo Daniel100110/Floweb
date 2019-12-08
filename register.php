@@ -1,13 +1,12 @@
 <?php
-if (isset($_SESSION['login_user'])) {
-  header("location:home.php");
-}
+  if (isset($_SESSION['login_user'])) {
+    header("location:home.php");
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>Floweb</title>
+  <title>[00] Registro</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -79,9 +78,7 @@ if (isset($_SESSION['login_user'])) {
       border-top-right-radius: 0;
     }
   </style>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
-
 <body>
   <div class="container">
     <div class="row">
@@ -111,52 +108,37 @@ if (isset($_SESSION['login_user'])) {
       </div>
     </div>
   </div>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-      'use strict'
-
-      window.addEventListener('load', function() {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation')
-
-        // Loop over them and prevent submission
-        Array.prototype.filter.call(forms, function(form) {
-          form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault()
-              event.stopPropagation()
-            }
-            form.classList.add('was-validated')
-          }, false)
-        })
-      }, false)
-    }())
-  </script>
   <?php
-  if (isset($_POST['submit'])) {
-    include './db/conexion.php';
-    $correo_cuenta = $_POST['correo_cuenta'];
-    $contra_cuenta = $_POST['contra_cuenta'];
-    $contra_cuenta2 = $_POST['contra_cuenta2'];
-    $no_acceso = 1;
-    $status_cuenta = "offline";
-    if (strcmp($contra_cuenta, $contra_cuenta2) === 0) {
-      $sql = "insert into cuenta values ('$correo_cuenta','$contra_cuenta','$no_acceso','$status_cuenta');";
-      if ($conn->query($sql)) {
-        echo "<script>swal('¡Bienvenido!', '¡Cuenta creada exitosamente!', 'success');</script>";
+    if (isset($_POST['submit'])) {
+      include './db/conexion.php';
+      $reg_correo_01 = $_POST['correo_cuenta'];
+      $reg_contra_01 = $_POST['contra_cuenta'];
+      $reg_contra_02 = $_POST['contra_cuenta2'];
+      $reg_acceso_01 = 1;
+      $reg_status_01 = "Desconectado";
+      $reg_saldo_01 = 0;
+      if (strcmp($reg_contra_01, $reg_contra_02) === 0) {
+        $sql = "insert into cuenta values ('$reg_correo_01','$reg_contra_01','$reg_acceso_01','$reg_saldo_01','$reg_status_01');";
+        if ($conn->query($sql)) {
+          echo  "<script>".
+                  "swal('¡Bienvenido!', '¡Cuenta creada exitosamente!', 'success');".
+                "</script>";
+        } else {
+          echo "<script>".
+                  "swal('¡La cuenta ya existe!', '¡La cuenta ya existe o falta un campo!', 'error');".
+                "</script>";
+        }
+        $conn->close();
       } else {
-        echo "<script>swal('¡La cuenta ya existe!', '¡La cuenta ya existe o falta un campo!', 'error');</script>";
+        echo "<script>"."
+                swal('¡Error!', '¡Las contraseñas no coinciden!', 'error');".
+              "</script>";
       }
-      $conn->close();
-    } else {
-      echo "<script>swal('¡Error!', '¡Las contraseñas no coinciden!', 'error');</script>";
     }
-  }
   ?>
 </body>
-
 </html>

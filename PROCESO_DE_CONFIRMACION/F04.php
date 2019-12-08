@@ -8,14 +8,14 @@ if (isset($_SESSION['login_user'])) {
     <?php
       include '../head/head.php';
       ?>
-    <title>[F03]CRUD MATERIALES</title>
+    <title>[F04] Proceso de confirmación</title>
     <link rel="stylesheet" href="../css/css_f03.css">
   </head>
   <body>
     <?php
       include '../head/header.php';
       include '../nav/nav_on.php';
-      // include 'metodos_f10.php';
+      include 'funciones_f04.php';
       ?>
     <div class="container-fluid">
       <div class="row">
@@ -32,38 +32,42 @@ if (isset($_SESSION['login_user'])) {
             <tbody>
               <?php
                 include '../db/conexion.php';
-                $sql = "select * from carrito inner join carrito_producto on carrito.no_carrito=carrito_producto.no_carrito inner join producto on carrito_producto.no_producto=producto.no_producto";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                  while ($row = $result->fetch_assoc()) {
-                    echo "<tr>
-                <th scope='row'>" . $row['no_carrito'] . "</th>" .
-                      "<td>" . $row['nom_producto'] . "</td>" .
-                      "<td>" . $row['cantidad'] . " pieza(s)</td>" .
-                      "<td>" . $row['precio_producto'] . "$ dolar(es)</td>
-                </tr>";
+                $f04_sql_01 = "select * from carrito inner join carrito_producto on carrito.no_carrito=carrito_producto.no_carrito inner join producto on carrito_producto.no_producto=producto.no_producto";
+                $f04_res_01 = $conn->query($f04_sql_01);
+                if ($f04_res_01 -> num_rows > 0) {
+                  while ($row = $f04_res_01 -> fetch_assoc()) {
+                    echo "<tr>".
+                            "<th scope='row'>".
+                              $row['no_carrito']. 
+                            "</th>".
+                            "<td>".
+                              $row['nom_producto'].
+                            "</td>".
+                            "<td>".
+                              $row['cantidad']."pieza(s)</td>".
+                            "<td>".
+                              $row['precio_producto']."$ dolar(es)". 
+                            "</td>".
+                          "</tr>";
                   }
-                } else { }
+                } else { 
+                }
                 $conn->close();
                 ?>
             </tbody>
           </table>
-
           <form method="post" action="_insertarPedido.php">
             <?php
-              $var1 = 0;
-              $var2 = 0;
-
+              $var1 = 0;$var2 = 0;
               include '../db/conexion.php';
-              $sql = "select sum(producto.precio_producto*carrito_producto.cantidad) as b from carrito_producto inner join producto on carrito_producto.no_producto=producto.no_producto";
-              $result = $conn->query($sql);
-              if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
+              $f04_ip_sql_01 = "select sum(producto.precio_producto*carrito_producto.cantidad) as b from carrito_producto inner join producto on carrito_producto.no_producto=producto.no_producto";
+              $f04_ip_res_01 = $conn -> query($f04_ip_sql_01);
+              if ($f04_ip_res_01 -> num_rows > 0) {
+                while ($row = $f04_ip_res_01 -> fetch_assoc()) {
                   echo "Subtotal: <input  id='subtotal' name='subtotal' type='number' value='" . $row['b'] . "' >" . "$ dollar(es).</input><br>";
                   $var1 = $row['b'];
                 }
               } else { }
-
               $sql2 = "select cantidad_iva from iva where no_iva=1";
               $result = $conn->query($sql2);
               if ($result->num_rows > 0) {
@@ -79,17 +83,13 @@ if (isset($_SESSION['login_user'])) {
             <br>
             <button type="submit">Confirmar pedido</button>
           </form>
-
         </div>
-
       </div>
       <?php
         include '../footer/footer.php';
         ?>
   </body>
-
   </html>
-
   <?php
 }
 if (!$_SESSION['login_user']) {

@@ -25,7 +25,7 @@
           }
         } else { }
         $conn->close();
-    }
+  }
   function ver_carrito(){
       include '../db/conexion.php';
       $correo_02 = $_SESSION['login_user'];
@@ -50,7 +50,6 @@
       else{}
     $conn->close();
   }
-
   function ver_num_productos(){
     include '../db/conexion.php';
     $correo_03 = $_SESSION['login_user'];
@@ -63,7 +62,6 @@
     } else { }
     $conn->close();
   }
-
   function ver_subtotal(){
     include '../db/conexion.php';
     $correo_04 = $_SESSION['login_user'];
@@ -79,7 +77,6 @@
     } else{}
     $conn->close();
   }
-
   function ver_total(){
     include '../db/conexion.php';
     $correo_05 = $_SESSION['login_user'];
@@ -95,15 +92,14 @@
     } else{}
     $conn->close();
   }
-
   function ver_saldo(){
     include '../db/conexion.php';
     $correo_06 = $_SESSION['login_user'];
-    $sql_06 = "select saldo_persona from datosPersonales inner join cuenta on cuenta.correo_cuenta=datosPersonales.correo_cuenta where cuenta.correo_cuenta='$correo_06'";
+    $sql_06 = "select saldo_cuenta from cuenta where correo_cuenta='$correo_06'";
     $result_06 = $conn->query($sql_06);
     if ($result_06 -> num_rows > 0) {
       while ($row = $result_06 -> fetch_assoc()) {
-        $sum_precio_06 = $row['saldo_persona'];
+        $sum_precio_06 = $row['saldo_cuenta'];
         $float_p_06 = floatval($sum_precio_06);
         $english_f_06 = number_format($float_p_06, 2, '.', ',');
         echo "$".$english_f_06;
@@ -111,7 +107,6 @@
     } else { }
     $conn->close();
   }
-
   function get_subtotal(){
     include '../db/conexion.php';
     $correo_04 = $_SESSION['login_user'];
@@ -125,7 +120,6 @@
     $conn->close();
     return $sum_precio_04;
   }
-
   function get_total(){
     include '../db/conexion.php';
     $correo_04 = $_SESSION['login_user'];
@@ -139,7 +133,6 @@
     $conn->close();
     return $total;
   }
-
   function get_productos(){
     include '../db/conexion.php';
     $correo_x = $_SESSION['login_user'];
@@ -166,4 +159,79 @@
     } else{}
     $conn->close();
     return $lista;
+  }
+  function get_datosPersonales(){
+    include '../db/conexion.php';
+    $correo_05 = $_SESSION['login_user'];
+    $sql_05 = "select * from datosPersonales where correo_cuenta='$correo_05'";
+    $result_05 = $conn -> query($sql_05);
+    if ($result_05 -> num_rows > 0) {
+      while ($row = $result_05 -> fetch_assoc()) {
+        return $row['cp_persona'];
+      }
+    } else{}
+    $conn->close();
+  }
+  function get_saldo(){
+    include '../db/conexion.php';
+    $correo_06 = $_SESSION['login_user'];
+    $sql_06 = "select saldo_cuenta from cuenta where correo_cuenta='$correo_06'";
+    $result_06 = $conn->query($sql_06);
+    if ($result_06 -> num_rows > 0) {
+      while ($row = $result_06 -> fetch_assoc()) {
+        $saldo = $row['saldo_cuenta'];
+        return $saldo;
+      }
+    } else { }
+    $conn->close();
+  }
+  function mostrarCiudad(){
+    include '../db/conexion.php';
+    $correo_x = $_SESSION['login_user'];
+    $sql_x = "select * from datosPersonales where correo_cuenta='$correo_x'";
+    $result_x = $conn->query($sql_x);
+    if ($result_x -> num_rows > 0) {
+      while ($row = $result_x -> fetch_assoc()) {
+        $ciudad_persona = $row['ciudad_persona'];
+      }
+      switch($ciudad_persona){
+      case "Tijuana":
+        echo 0;
+      break;
+      case "Rosarito":
+        echo 1;
+      break;
+      case "Tecate":
+        echo 2;
+      break;
+      case "Mexicali":
+        echo 3;
+      break;
+      case "Ensenada":
+        echo 4;
+      break;
+      }
+    } else { }
+    $conn->close();
+  }
+  function mostrarDatos(){
+    include '../db/conexion.php';
+    $correo_06 = $_SESSION['login_user'];
+    $sql_06 = "select * from datosPersonales where correo_cuenta='$correo_06'";
+    $result_06 = $conn->query($sql_06);
+    if ($result_06 -> num_rows > 0) {
+      while ($row = $result_06 -> fetch_assoc()) {
+        $nom_persona = $row['nom_persona'];
+        $tel_persona = $row['tel_persona'];
+        $dir1_persona = $row['dir1_persona'];
+        $dir2_persona = $row['dir2_persona'];
+        $cp_persona = $row['cp_persona'];
+        echo "$('#nom_persona').val('$nom_persona');";
+        echo "$('#tel_persona').val('$tel_persona');";
+        echo "$('#dir1_persona').val('$dir1_persona');";
+        echo "$('#dir2_persona').val('$dir2_persona');";
+        echo "$('#cp_persona').val('$cp_persona');";
+      }
+    } else { }
+    $conn->close();
   }

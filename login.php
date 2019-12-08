@@ -3,12 +3,11 @@ if (isset($_SESSION['login_user'])) {
   header("location:home.php");
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Floweb</title>
+  <title>[00] Inicio de sesión</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -80,10 +79,10 @@ if (isset($_SESSION['login_user'])) {
       border-top-right-radius: 0;
     }
   </style>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <div class="container">
     <div class="row">
       <div class="col-sm-4">
@@ -110,7 +109,9 @@ if (isset($_SESSION['login_user'])) {
           <br>
           <input name="submit" type="submit" class="btn btn-lg btn-primary btn-block" value="Iniciar">
           <br>
-          <center><a href="registro.php"><font color="purple">Registrarse</font></a></center>
+          <center><a href="register.php">
+              <font color="purple">Registrarse</font>
+            </a></center>
         </form>
       </div>
       <div class="col-sm-4">
@@ -120,50 +121,60 @@ if (isset($_SESSION['login_user'])) {
 </body>
 
 </html>
-
 <?php
 if (isset($_POST['submit'])) {
-  $connect = mysqli_connect("localhost", "root", "", "floweb");
+  $logIn_connect = mysqli_connect("localhost", "root", "", "floweb");
   session_start();
-  $correo_cuenta = $_POST['correo_cuenta'];
-  $contra_cuenta = $_POST['contra_cuenta'];
-  $no_acceso = $_POST['no_acceso'];
-
-  $_SESSION['login_user'] = $correo_cuenta;
-  $query = mysqli_query($connect, "SELECT no_acceso FROM cuenta WHERE correo_cuenta='$correo_cuenta' and contra_cuenta='$contra_cuenta' and no_acceso='$no_acceso'");
-  if (mysqli_num_rows($query) != 0) {
-
-    switch ($no_acceso) {
-      case 4:
-        echo "<script>swal('¡Bienvenido!', '¡Datos correctos!', 'success');</script>";
-        echo "<script language='javascript' type='text/javascript'>" .
-          "location.href='./abcm_usuarios/F01.php'" .
-          "</script>";
-        break;
-      case 1:
-        echo "<script>swal('¡Bienvenido!', '¡Datos correctos!', 'success');</script>";
-        echo "<script language='javascript' type='text/javascript'>" .
-          "location.href='./proceso_de_venta/index.php'" .
-          "</script>";
-        break;
-      case 2:
-        echo "<script>swal('¡Bienvenido!', '¡Datos correctos!', 'success');</script>";
-        echo "<script language='javascript' type='text/javascript'>" .
-          "location.href='./abcm_productos/F04.php'" .
-          "</script>";
-        break;
-      case 3:
-        echo "<script>swal('¡Bienvenido!', '¡Datos correctos!', 'success');</script>";
-        echo "<script language='javascript' type='text/javascript'>" .
-          "location.href='./reportes/F09.php'" .
-          "</script>";
-        break;
-      default:
-        echo "<script>swal('¡Error!', '¡Elija un tipo de acceso valido!', 'error');</script>";
-        break;
-    }
+  $logIn_correo_01 = $_POST['correo_cuenta'];
+  $logIn_contra_01 = $_POST['contra_cuenta'];
+  $logIn_acceso_01 = $_POST['no_acceso'];
+  $_SESSION['login_user'] = $logIn_correo_01;
+  $logIn_sql_01 = mysqli_query($logIn_connect, "SELECT status_cuenta FROM cuenta WHERE correo_cuenta='$logIn_correo_01' and status_cuenta='Conectado'");
+  $logIn_sql_02 = mysqli_query($logIn_connect, "SELECT no_acceso FROM cuenta WHERE correo_cuenta='$logIn_correo_01' and contra_cuenta='$logIn_contra_01' and no_acceso='$logIn_acceso_01' and status_cuenta='Desconectado'");
+  $logIn_sql_03 = mysqli_query($logIn_connect, "UPDATE cuenta SET status_cuenta = 'Conectado' WHERE correo_cuenta = '$logIn_correo_01'");
+  $logIn_sql_04 = mysqli_query($logIn_connect, "UPDATE cuenta SET status_cuenta = 'Desconectado' WHERE correo_cuenta = '$logIn_correo_01'");
+  if (mysqli_num_rows($logIn_sql_01) != 0) {
+    echo "<script>swal('¡Usuario en linea!', '¡La cuenta esta siendo usada actualmente!', 'info');</script>";
   } else {
-    echo "<script>swal('¡Credenciales invalidas!', '¡La cuenta no existe o no coincide con el tipo de acceso!', 'info');</script>";
+    if (mysqli_num_rows($logIn_sql_02) != 0) {
+      switch ($logIn_acceso_01) {
+        case 4:
+          $logIn_connect->query($logIn_sql_03);
+          echo "<script>swal('¡Bienvenido!', '¡Datos correctos!', 'success');</script>";
+          echo "<script language='javascript' type='text/javascript'>" .
+            "location.href='./abcm_usuarios/F07.php'" .
+            "</script>";
+          break;
+        case 1:
+          $logIn_connect->query($logIn_sql_03);
+          echo "<script>swal('¡Bienvenido!', '¡Datos correctos!', 'success');</script>";
+          echo "<script language='javascript' type='text/javascript'>" .
+            "location.href='./proceso_de_venta/F01.php'" .
+            "</script>";
+          break;
+        case 2:
+          $logIn_connect->query($logIn_sql_03);
+          echo "<script>swal('¡Bienvenido!', '¡Datos correctos!', 'success');</script>";
+          echo "<script language='javascript' type='text/javascript'>" .
+            "location.href='./abcm_productos/F08.php'" .
+            "</script>";
+          break;
+        case 3:
+          $logIn_connect->query($logIn_sql_03);
+          echo "<script>swal('¡Bienvenido!', '¡Datos correctos!', 'success');</script>";
+          echo "<script language='javascript' type='text/javascript'>" .
+            "location.href='./reportes/F05.php'" .
+            "</script>";
+          break;
+        default:
+          echo "<script>swal('¡Error!', '¡Elija un tipo de acceso valido!', 'error');</script>";
+          $logIn_connect->query($logIn_sql_04);
+          break;
+      }
+    } else {
+      echo "<script>swal('¡Credenciales invalidas!', '¡La cuenta no existe o no coincide con el tipo de acceso!', 'info');</script>";
+      $logIn_connect->query($logIn_sql_04);
+    }
   }
 }
 ?>
