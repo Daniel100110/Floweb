@@ -6,7 +6,7 @@
       FloWeb
     </h1>
     <h6 style="color:red">
-      Versión Beta v1.4
+      Florería en línea
     </h6>
   </center>
   <br/><br/>

@@ -129,13 +129,8 @@ if (isset($_POST['submit'])) {
   $logIn_contra_01 = $_POST['contra_cuenta'];
   $logIn_acceso_01 = $_POST['no_acceso'];
   $_SESSION['login_user'] = $logIn_correo_01;
-  $logIn_sql_01 = mysqli_query($logIn_connect, "SELECT status_cuenta FROM cuenta WHERE correo_cuenta='$logIn_correo_01' and status_cuenta='Conectado'");
   $logIn_sql_02 = mysqli_query($logIn_connect, "SELECT no_acceso FROM cuenta WHERE correo_cuenta='$logIn_correo_01' and contra_cuenta='$logIn_contra_01' and no_acceso='$logIn_acceso_01' and status_cuenta='Desconectado'");
   $logIn_sql_03 = mysqli_query($logIn_connect, "UPDATE cuenta SET status_cuenta = 'Conectado' WHERE correo_cuenta = '$logIn_correo_01'");
-  $logIn_sql_04 = mysqli_query($logIn_connect, "UPDATE cuenta SET status_cuenta = 'Desconectado' WHERE correo_cuenta = '$logIn_correo_01'");
-  if (mysqli_num_rows($logIn_sql_01) != 0) {
-    echo "<script>swal('¡Usuario en linea!', '¡La cuenta esta siendo usada actualmente!', 'info');</script>";
-  } else {
     if (mysqli_num_rows($logIn_sql_02) != 0) {
       switch ($logIn_acceso_01) {
         case 4:
@@ -168,13 +163,10 @@ if (isset($_POST['submit'])) {
           break;
         default:
           echo "<script>swal('¡Error!', '¡Elija un tipo de acceso valido!', 'error');</script>";
-          $logIn_connect->query($logIn_sql_04);
           break;
       }
     } else {
       echo "<script>swal('¡Credenciales invalidas!', '¡La cuenta no existe o no coincide con el tipo de acceso!', 'info');</script>";
-      $logIn_connect->query($logIn_sql_04);
     }
-  }
 }
 ?>

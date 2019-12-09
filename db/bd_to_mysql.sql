@@ -47,27 +47,21 @@ create database Floweb;
     foreign key (no_producto) references producto(no_producto)
   );
 
-  create table direccion(
-    no_direccion int primary key not null AUTO_INCREMENT,
+  create table pedido(
+    no_pedido int primary key not null AUTO_INCREMENT,
+    correo_cuenta varchar(60),
+    lista_productos varchar(100),
+    subtotal_pedido float not null,
+    iva_pedido float not null,
+    total_pedido float not null,
     nom_persona varchar(60) not null,
     tel_persona varchar(13) not null,
     dir1_persona varchar(100) not null,
     dir2_persona varchar(100) not null,
     estado_persona varchar(100) not null,
     ciudad_persona int not null,
-    cp_persona int not null
-  );
-
-  create table pedido(
-    no_pedido int primary key not null AUTO_INCREMENT,
-    correo_cuenta varchar(60),
-    no_direccion int not null,
-    lista_productos varchar(100),
-    subtotal_pedido float not null,
-    iva_pedido float not null,
-    total_pedido float not null,
-    foreign key (correo_cuenta) references cuenta(correo_cuenta),
-    foreign key (no_direccion) references direccion(no_direccion)
+    cp_persona int not null,
+    foreign key (correo_cuenta) references cuenta(correo_cuenta)
   );
 
   create table cupones(

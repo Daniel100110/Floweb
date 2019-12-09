@@ -21,46 +21,40 @@ if (isset($_SESSION['login_user'])) {
       include '../nav/nav_on.php';
       include 'funciones_f05.php';
       ?>
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: 5%;">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-12">
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">No_de_pedido</th>
-                <th scope="col">No_de_carrito</th>
-                <th scope="col">Nombre del cliente</th>
-                <th scope="col">Direccion</th>
-                <th scope="col">Subtotal</th>
-                <th scope="col">Iva</th>
-                <th scope="col">Total</th>
-                <th scope="col">Status</th>
+                <th scope="col" colspan="11" style="text-align:center; color:gray;">
+                  <h2>Pedidos</h2>
+                </th>
+              </tr>
+            </thead>
+            <thead>
+              <tr>
+                <th scope="col">Numero de pedido</th>
+                <th scope="col">lista_productos</th>
+                <th scope="col">subtotal</th>
+                <th scope="col">iva</th>
+                <th scope="col">total</th>
+                <th scope="col">nombre</th>
+                <th scope="col">telefono</th>
+                <th scope="col">direccion 1</th>
+                <th scope="col">direccion 2</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Ciudad</th>
+                <th scope="col">Codigo postal</th>
               </tr>
             </thead>
             <tbody>
-              <!-- <?php
-                include '../db/conexion.php';
-                $sql = "select * from pedido inner join iva on pedido.no_iva=iva.no_iva inner join carrito on pedido.no_carrito=carrito.no_carrito inner join cuenta on cuenta.no_cuenta=carrito.no_cuenta";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                  while ($row = $result->fetch_assoc()) {
-                    echo "<tr>
-                  <th scope='row'>"
-                      . $row['no_pedido'] . "</th>" .
-                      "<td>" . $row['no_carrito'] . "</td>" .
-                      "<td>" . $row['apll_paterno'] . " " . $row['apll_materno'] . " " . $row['nom_usuario'] . "</td>" .
-                      "<td>" . $row['dir_usuario'] . "</td>" .
-                      "<td>" . $row['precio_subtotal'] . "</td>" .
-                      "<td>" . $row['cantidad_iva'] . "%</td>" .
-                      "<td>" . $row['precio_total'] . "</td>" .
-                      "<td>" . $row['status_pedido'] . "</td>" .
-                      "</tr>";
-                  }
-                } else { }
-                $conn->close();
-                ?> -->
+              <?php
+                consultar_cuenta();
+                ?>
             </tbody>
           </table>
+          <br><br>
         </div>
       </div>
     </div>

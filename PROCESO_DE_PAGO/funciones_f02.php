@@ -41,7 +41,7 @@
           echo 
           "<li class='list-group-item d-flex justify-content-between lh-condensed'>".
             "<div>".
-              "<h6 class='my-0'>".$row['nom_producto']."</h6>".
+              "<h6 class='my-0'>[".$row['cantidad']."] ".$row['nom_producto']."</h6>".
             "</div>".
             "<span class='text-muted'>$".$english_format_02."</span>".
           "</li>";
